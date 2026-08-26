@@ -30,13 +30,18 @@ jobs:
           npm install --legacy-peer-deps
           npm install @capacitor/core @capacitor/cli @capacitor/android --legacy-peer-deps
 
-      - name: Build Web Production Bundle
-        run: npm run build
+      - name: Build Web Production Bundle & Icons
+        run: |
+          node scripts/generate-icons.js
+          npm run build
 
       - name: Initialize & Sync Capacitor Android
         run: |
           npx cap add android || true
           npx cap sync android
+          
+          # Generate High-Resolution Android App Icons for All Screen Densities
+          node scripts/generate-icons.js
           
           # Fix duplicate Kotlin stdlib-jdk7 / stdlib-jdk8 classes in Gradle
           if [ -f "android/app/build.gradle" ]; then

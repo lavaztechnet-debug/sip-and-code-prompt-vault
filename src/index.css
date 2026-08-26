@@ -71,6 +71,19 @@ body {
   color: var(--color-neu-text);
   overflow-x: hidden;
   font-family: ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  -webkit-tap-highlight-color: transparent;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  touch-action: manipulation;
+  overscroll-behavior-y: contain;
+  min-height: 100dvh;
+}
+
+:root {
+  --sat: env(safe-area-inset-top, 0px);
+  --sab: env(safe-area-inset-bottom, 0px);
+  --sal: env(safe-area-inset-left, 0px);
+  --sar: env(safe-area-inset-right, 0px);
 }
 
 /* Hide scrollbar for clean UI */
@@ -86,5 +99,14 @@ body {
   .no-scrollbar {
     -ms-overflow-style: none;
     scrollbar-width: none;
+    -webkit-overflow-scrolling: touch;
+  }
+  
+  .safe-top {
+    padding-top: max(16px, env(safe-area-inset-top, 16px));
+  }
+  
+  .safe-bottom {
+    padding-bottom: max(16px, env(safe-area-inset-bottom, 16px));
   }
 }

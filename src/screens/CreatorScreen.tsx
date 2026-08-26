@@ -155,27 +155,27 @@ export const CreatorScreen: React.FC = () => {
   };
 
   return (
-    <div className="p-6 pt-12 animate-fade-in flex flex-col min-h-screen pb-32 gap-6">
+    <div className="px-4 sm:px-6 pt-[max(14px,calc(env(safe-area-inset-top,0px)+14px))] pb-[max(86px,calc(env(safe-area-inset-bottom,0px)+86px))] animate-fade-in flex flex-col min-h-full gap-4 sm:gap-6">
       {/* Header */}
-      <header className="neu-flat rounded-[24px] p-6 flex items-center justify-between">
+      <header className="neu-flat rounded-[24px] sm:rounded-[28px] p-5 sm:p-6 flex items-center justify-between border border-[var(--color-neu-shadow-light)]/40">
         <div>
-          <h1 className="text-[10px] uppercase tracking-widest font-bold opacity-60">Prompt Creator Studio</h1>
-          <p className="text-xl font-serif italic text-[var(--color-neu-accent)] mt-1">Live Variable Builder</p>
+          <h1 className="text-[9.5px] sm:text-[10px] uppercase tracking-widest font-bold opacity-60">Prompt Creator Studio</h1>
+          <p className="text-lg sm:text-xl font-serif italic text-[var(--color-neu-accent)] mt-0.5">Live Variable Builder</p>
         </div>
         <div className="flex items-center gap-2">
           <button
             onClick={() => setShowTermuxModal(true)}
-            className="neu-button p-3 rounded-[16px] text-[var(--color-neu-accent)]"
+            className="neu-button p-2.5 sm:p-3 rounded-[16px] text-[var(--color-neu-accent)] cursor-pointer"
             title="Local Termux Bridge & Engine Hub"
           >
-            <Terminal size={18} />
+            <Terminal size={17} />
           </button>
           <button
             onClick={() => setShowProfilesModal(true)}
-            className="neu-button p-3 rounded-[16px] text-[var(--color-neu-accent)]"
+            className="neu-button p-2.5 sm:p-3 rounded-[16px] text-[var(--color-neu-accent)] cursor-pointer"
             title="Manage Context Profiles"
           >
-            <Sliders size={18} />
+            <Sliders size={17} />
           </button>
         </div>
       </header>

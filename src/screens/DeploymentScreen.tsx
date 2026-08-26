@@ -145,25 +145,25 @@ echo "🎉 Standalone APK built: $BUILD_DIR/app-aligned.apk"
   };
 
   return (
-    <div className="p-6 pt-12 animate-fade-in pb-32 h-full flex flex-col gap-6">
+    <div className="px-4 sm:px-6 pt-[max(14px,calc(env(safe-area-inset-top,0px)+14px))] pb-[max(86px,calc(env(safe-area-inset-bottom,0px)+86px))] animate-fade-in h-full flex flex-col gap-4 sm:gap-6 overflow-y-auto no-scrollbar">
       {/* Header */}
-      <header className="neu-flat rounded-[28px] p-6 flex items-center justify-between border border-[var(--color-neu-shadow-light)]/40">
-        <div className="flex items-center gap-3.5">
-          <SipCodeEmblem size="sm" withGlow />
-          <div>
+      <header className="neu-flat rounded-[24px] sm:rounded-[28px] p-5 sm:p-6 flex items-center justify-between border border-[var(--color-neu-shadow-light)]/40">
+        <div className="flex items-center gap-3">
+          <SipCodeEmblem size="sm" withGlow className="shrink-0" />
+          <div className="min-w-0">
             <div className="flex items-center gap-1.5">
-              <span className="text-[10px] uppercase tracking-widest font-bold text-[var(--color-neu-accent)]">On-Device Subsystem</span>
+              <span className="text-[9px] sm:text-[10px] uppercase tracking-widest font-bold text-[var(--color-neu-accent)]">On-Device Subsystem</span>
             </div>
-            <h1 className="text-lg font-serif italic text-[var(--color-neu-text)] mt-0.5">Termux &amp; LLM Deployment</h1>
-            <p className="text-[10px] text-[var(--color-neu-text-light)]">Zero-Gradle Pipelines, Local Models &amp; Multi-Format Vault Exporters</p>
+            <h1 className="text-base sm:text-lg font-serif italic text-[var(--color-neu-text)] mt-0.5 truncate">Termux &amp; LLM Deployment</h1>
+            <p className="text-[9.5px] sm:text-[10px] text-[var(--color-neu-text-light)] truncate">Zero-Gradle Pipelines &amp; Exporters</p>
           </div>
         </div>
         <button
           onClick={() => setShowTermuxModal(true)}
-          className="neu-button p-3 rounded-[16px] text-[var(--color-neu-accent)] cursor-pointer shrink-0"
+          className="neu-button p-2.5 sm:p-3 rounded-[16px] text-[var(--color-neu-accent)] cursor-pointer shrink-0"
           title="Configure Bridge"
         >
-          <Terminal size={18} />
+          <Terminal size={17} />
         </button>
       </header>
 

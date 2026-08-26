@@ -34,29 +34,29 @@ const MainLayout: React.FC = () => {
   };
 
   return (
-    <div className="h-screen w-full bg-[var(--color-neu-bg)] text-[var(--color-neu-text)] relative overflow-hidden flex flex-col">
-      {/* Floating Global Theme Quick-Switcher */}
-      <div className="fixed top-4 right-4 z-40">
+    <div className="h-[100dvh] w-full bg-[var(--color-neu-bg)] text-[var(--color-neu-text)] relative overflow-hidden flex flex-col select-none">
+      {/* Floating Global Theme Quick-Switcher respecting Top Safe Area (Cutout aware) */}
+      <div className="fixed top-[max(12px,calc(env(safe-area-inset-top,0px)+10px))] right-4 z-40">
         <button
           onClick={() => {
             setIsThemeModalOpen(true);
             triggerHaptic('light');
           }}
-          className="neu-button px-3 py-1.5 rounded-full flex items-center gap-2 cursor-pointer text-xs font-bold transition-transform hover:scale-105 active:scale-95 border border-[var(--color-neu-shadow-light)]/40 shadow-md"
+          className="neu-button px-3 py-1.5 rounded-full flex items-center gap-1.5 cursor-pointer text-xs font-bold transition-transform hover:scale-105 active:scale-95 border border-[var(--color-neu-shadow-light)]/50 shadow-md backdrop-blur-xs"
           title="Change Theme & Atmosphere"
         >
           <div 
-            className="w-2.5 h-2.5 rounded-full shadow-xs" 
+            className="w-2.5 h-2.5 rounded-full shadow-xs shrink-0" 
             style={{ backgroundColor: activeTheme.colors.accent }}
           />
-          <Palette size={13} className="text-[var(--color-neu-accent)]" />
-          <span className="hidden sm:inline text-[11px] text-[var(--color-neu-text)]">
+          <Palette size={13} className="text-[var(--color-neu-accent)] shrink-0" />
+          <span className="text-[10px] sm:text-[11px] text-[var(--color-neu-text)] font-semibold truncate max-w-[80px] sm:max-w-none">
             {activeTheme.name}
           </span>
         </button>
       </div>
 
-      <div className="flex-1 overflow-y-auto no-scrollbar">
+      <div className="flex-1 overflow-y-auto no-scrollbar w-full max-w-2xl mx-auto flex flex-col">
         {renderScreen()}
       </div>
 

@@ -89,26 +89,26 @@ export const VaultScreen: React.FC = () => {
   };
 
   return (
-    <div className="p-6 pt-12 animate-fade-in h-full flex flex-col gap-6">
-      <header className="neu-flat rounded-[24px] p-6 flex flex-col justify-center">
-        <h1 className="text-[10px] uppercase tracking-widest font-bold opacity-60 mb-4">Master Vault • {prompts.length} Prompts</h1>
-        <div className="neu-pressed rounded-full p-2 flex items-center mb-4">
-          <Search className="ml-3 text-[var(--color-neu-text-light)]" size={20} />
+    <div className="px-4 sm:px-6 pt-[max(14px,calc(env(safe-area-inset-top,0px)+14px))] pb-[max(86px,calc(env(safe-area-inset-bottom,0px)+86px))] animate-fade-in h-full flex flex-col gap-4 sm:gap-6">
+      <header className="neu-flat rounded-[24px] sm:rounded-[28px] p-5 sm:p-6 flex flex-col justify-center border border-[var(--color-neu-shadow-light)]/40">
+        <h1 className="text-[9.5px] sm:text-[10px] uppercase tracking-widest font-bold opacity-60 mb-3">Master Vault • {prompts.length} Prompts</h1>
+        <div className="neu-pressed rounded-full p-1.5 flex items-center mb-3">
+          <Search className="ml-3 text-[var(--color-neu-text-light)] shrink-0" size={18} />
           <input 
             type="text" 
             placeholder="Search prompts, tags, or content..." 
-            className="w-full bg-transparent border-none outline-none px-4 py-2 text-[var(--color-neu-text)] placeholder-[var(--color-neu-text-light)] text-sm"
+            className="w-full bg-transparent border-none outline-none px-3 py-1.5 text-[var(--color-neu-text)] placeholder-[var(--color-neu-text-light)] text-xs sm:text-sm"
             value={search}
             onChange={(e) => setSearch(e.target.value)}
           />
         </div>
         
-        <div className="flex gap-3 overflow-x-auto no-scrollbar py-2">
+        <div className="flex gap-2 overflow-x-auto no-scrollbar py-1">
           {CATEGORIES.map(category => (
             <button 
               key={category}
               onClick={() => handleCategorySelect(category)}
-              className={`whitespace-nowrap px-4 py-2 rounded-full text-[10px] font-bold uppercase tracking-widest transition-all ${
+              className={`whitespace-nowrap px-3.5 py-1.5 rounded-full text-[9px] sm:text-[10px] font-bold uppercase tracking-widest transition-all shrink-0 cursor-pointer ${
                 selectedCategory === category 
                   ? 'neu-pressed text-[var(--color-neu-accent)]' 
                   : 'neu-button text-[var(--color-neu-text-light)]'
@@ -120,62 +120,62 @@ export const VaultScreen: React.FC = () => {
         </div>
       </header>
       
-      <div className="flex-1 overflow-y-auto space-y-4 pb-24 no-scrollbar">
+      <div className="flex-1 overflow-y-auto space-y-3.5 no-scrollbar">
         {filteredPrompts.map(prompt => (
-          <div key={prompt.id} className="neu-flat rounded-[24px] p-6 flex flex-col gap-3">
-            <div className="flex justify-between items-start">
-              <div className="flex-1 pr-4">
-                <span className="inline-block px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider neu-pressed text-[var(--color-neu-accent)] mb-2">
+          <div key={prompt.id} className="neu-flat rounded-[22px] sm:rounded-[24px] p-4 sm:p-5 flex flex-col gap-3">
+            <div className="flex justify-between items-start gap-2">
+              <div className="flex-1 pr-2 min-w-0">
+                <span className="inline-block px-2.5 py-0.5 rounded-full text-[9px] font-bold uppercase tracking-wider neu-pressed text-[var(--color-neu-accent)] mb-1.5">
                   {prompt.category}
                 </span>
-                <h3 className="text-sm font-bold leading-tight">{prompt.title}</h3>
+                <h3 className="text-xs sm:text-sm font-bold leading-tight truncate">{prompt.title}</h3>
               </div>
               <button 
                 onClick={() => handleToggleFavorite(prompt.id)}
-                className={`p-3 rounded-2xl ${prompt.isFavorite ? 'neu-pressed text-[var(--color-neu-accent)]' : 'neu-button text-[var(--color-neu-text-light)]'}`}
+                className={`p-2.5 rounded-xl cursor-pointer shrink-0 ${prompt.isFavorite ? 'neu-pressed text-[var(--color-neu-accent)]' : 'neu-button text-[var(--color-neu-text-light)]'}`}
               >
-                <Star size={16} fill={prompt.isFavorite ? 'currentColor' : 'none'} />
+                <Star size={15} fill={prompt.isFavorite ? 'currentColor' : 'none'} />
               </button>
             </div>
             
-            <p className="text-xs text-[var(--color-neu-text-light)] line-clamp-2 leading-relaxed font-mono opacity-80">
+            <p className="text-[11px] sm:text-xs text-[var(--color-neu-text-light)] line-clamp-2 leading-relaxed font-mono opacity-80">
               {prompt.template}
             </p>
             
             {/* Action Grid */}
-            <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 pt-2 border-t border-[var(--color-neu-shadow-dark)]/30">
+            <div className="grid grid-cols-4 gap-2 pt-2 border-t border-[var(--color-neu-shadow-dark)]/30">
               <button 
                 onClick={() => handleCopy(prompt.template, prompt.id)}
-                className={`py-2.5 rounded-xl flex items-center justify-center gap-1.5 text-[9px] font-bold uppercase tracking-widest cursor-pointer transition-all ${
+                className={`py-2 rounded-xl flex items-center justify-center gap-1 text-[8.5px] sm:text-[9px] font-bold uppercase tracking-widest cursor-pointer transition-all ${
                   copiedId === prompt.id ? 'neu-pressed animate-neu-success text-emerald-600 font-bold' : 'neu-button text-[var(--color-neu-text)]'
                 }`}
               >
-                {copiedId === prompt.id ? <Check size={13} className="text-emerald-600" /> : <Copy size={13} />}
-                {copiedId === prompt.id ? 'Copied' : 'Copy'}
+                {copiedId === prompt.id ? <Check size={12} className="text-emerald-600" /> : <Copy size={12} />}
+                <span>{copiedId === prompt.id ? 'Copied' : 'Copy'}</span>
               </button>
 
               <button 
                 onClick={() => handleAskAI(prompt)}
-                className="neu-convex py-2.5 rounded-xl flex items-center justify-center gap-1.5 text-[9px] font-bold uppercase tracking-widest text-[var(--color-neu-accent)] cursor-pointer hover:shadow-md transition-all active:animate-neu-exec"
+                className="neu-convex py-2 rounded-xl flex items-center justify-center gap-1 text-[8.5px] sm:text-[9px] font-bold uppercase tracking-widest text-[var(--color-neu-accent)] cursor-pointer hover:shadow-md transition-all active:animate-neu-exec"
               >
-                <Play size={13} /> Ask AI
+                <Play size={12} /> <span>Ask AI</span>
               </button>
 
               <button 
                 onClick={() => handleSaveToKeep(prompt)}
-                className={`py-2.5 rounded-xl flex items-center justify-center gap-1.5 text-[9px] font-bold uppercase tracking-widest cursor-pointer transition-all ${
+                className={`py-2 rounded-xl flex items-center justify-center gap-1 text-[8.5px] sm:text-[9px] font-bold uppercase tracking-widest cursor-pointer transition-all ${
                   savedKeepId === prompt.id ? 'neu-pressed animate-neu-success text-emerald-600 font-bold' : 'neu-button text-[var(--color-neu-text-light)] hover:text-[var(--color-neu-accent)]'
                 }`}
               >
-                {savedKeepId === prompt.id ? <Check size={13} className="text-emerald-600" /> : <StickyNote size={13} />}
-                {savedKeepId === prompt.id ? 'Saved' : 'Keep'}
+                {savedKeepId === prompt.id ? <Check size={12} className="text-emerald-600" /> : <StickyNote size={12} />}
+                <span>{savedKeepId === prompt.id ? 'Saved' : 'Keep'}</span>
               </button>
 
               <button 
                 onClick={() => handleSendToChat(prompt)}
-                className="neu-button py-2.5 rounded-xl flex items-center justify-center gap-1.5 text-[9px] font-bold uppercase tracking-widest text-[var(--color-neu-text-light)] hover:text-[var(--color-neu-accent)] cursor-pointer"
+                className="neu-button py-2 rounded-xl flex items-center justify-center gap-1 text-[8.5px] sm:text-[9px] font-bold uppercase tracking-widest text-[var(--color-neu-text-light)] hover:text-[var(--color-neu-accent)] cursor-pointer"
               >
-                <MessageSquare size={13} /> Chat
+                <MessageSquare size={12} /> <span>Chat</span>
               </button>
             </div>
           </div>
