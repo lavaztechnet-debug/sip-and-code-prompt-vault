@@ -1,0 +1,39 @@
+{
+  "entities": {
+    "UserProfile": {
+      "collection": "users/{userId}",
+      "fields": {
+        "email": { "type": "string", "required": true },
+        "displayName": { "type": "string", "required": false },
+        "photoURL": { "type": "string", "required": false },
+        "favorites": { "type": "array", "required": false },
+        "updatedAt": { "type": "timestamp", "required": true }
+      }
+    },
+    "CustomPrompt": {
+      "collection": "users/{userId}/custom_prompts/{promptId}",
+      "fields": {
+        "title": { "type": "string", "required": true },
+        "category": { "type": "string", "required": true },
+        "template": { "type": "string", "required": true },
+        "tags": { "type": "array", "required": false },
+        "notes": { "type": "string", "required": false },
+        "createdAt": { "type": "timestamp", "required": true }
+      }
+    },
+    "KeepNote": {
+      "collection": "keep_notes/{noteId}",
+      "fields": {
+        "userId": { "type": "string", "required": true },
+        "title": { "type": "string", "required": true },
+        "body": { "type": "string", "required": true },
+        "category": { "type": "string", "required": false },
+        "tags": { "type": "array", "required": false },
+        "color": { "type": "string", "required": false },
+        "isPinned": { "type": "boolean", "required": false },
+        "checklist": { "type": "array", "required": false },
+        "updatedAt": { "type": "timestamp", "required": true }
+      }
+    }
+  }
+}

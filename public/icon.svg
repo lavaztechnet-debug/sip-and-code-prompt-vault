@@ -1,0 +1,178 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+  <defs>
+    <!-- Background Gradient -->
+    <radialGradient id="bgGrad" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#2a2d34"/>
+      <stop offset="70%" stop-color="#181a1e"/>
+      <stop offset="100%" stop-color="#0e1012"/>
+    </radialGradient>
+
+    <!-- Metallic Gold Outer Rim -->
+    <linearGradient id="goldRim" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#fff8d6"/>
+      <stop offset="15%" stop-color="#e8c263"/>
+      <stop offset="35%" stop-color="#9a7122"/>
+      <stop offset="50%" stop-color="#fff2b2"/>
+      <stop offset="70%" stop-color="#c99b32"/>
+      <stop offset="85%" stop-color="#734e12"/>
+      <stop offset="100%" stop-color="#d4aa43"/>
+    </linearGradient>
+
+    <!-- Metallic Gold Inner Plate -->
+    <radialGradient id="goldPlate" cx="40%" cy="35%" r="65%">
+      <stop offset="0%" stop-color="#ffe89e"/>
+      <stop offset="40%" stop-color="#d8aa42"/>
+      <stop offset="75%" stop-color="#a37622"/>
+      <stop offset="100%" stop-color="#6e4c11"/>
+    </radialGradient>
+
+    <!-- Cap Rainbow Gradient -->
+    <linearGradient id="capGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#4facfe"/>
+      <stop offset="30%" stop-color="#00f2fe"/>
+      <stop offset="60%" stop-color="#f093fb"/>
+      <stop offset="100%" stop-color="#f5576c"/>
+    </linearGradient>
+
+    <!-- Cup Rainbow Gradient -->
+    <linearGradient id="cupGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#43e97b"/>
+      <stop offset="35%" stop-color="#38f9d7"/>
+      <stop offset="70%" stop-color="#fa709a"/>
+      <stop offset="100%" stop-color="#fee140"/>
+    </linearGradient>
+
+    <!-- Skin Thread-Art Gradient -->
+    <linearGradient id="skinGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#ffb88c"/>
+      <stop offset="50%" stop-color="#de6262"/>
+      <stop offset="100%" stop-color="#a83232"/>
+    </linearGradient>
+
+    <!-- Thread Texture Pattern -->
+    <pattern id="threadPattern" width="4" height="4" patternUnits="userSpaceOnUse">
+      <path d="M0 2L4 2M2 0L2 4" stroke="#ffffff" stroke-width="0.5" opacity="0.15"/>
+    </pattern>
+
+    <!-- Drop Shadow Filter -->
+    <filter id="neuShadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="8" dy="12" stdDeviation="10" flood-color="#000000" flood-opacity="0.6"/>
+      <feDropShadow dx="-4" dy="-4" stdDeviation="8" flood-color="#ffffff" flood-opacity="0.1"/>
+    </filter>
+
+    <filter id="embossShadow" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="2" dy="2" stdDeviation="1.5" flood-color="#000000" flood-opacity="0.7"/>
+      <feDropShadow dx="-1" dy="-1" stdDeviation="1" flood-color="#fff8d6" flood-opacity="0.8"/>
+    </filter>
+  </defs>
+
+  <!-- Dark Base Tile with Rounded Chamfer -->
+  <rect x="16" y="16" width="480" height="480" rx="64" fill="url(#bgGrad)" filter="url(#neuShadow)"/>
+  
+  <!-- Subtle Brushed Texture lines -->
+  <rect x="24" y="24" width="464" height="464" rx="56" fill="none" stroke="#333842" stroke-width="1.5" opacity="0.4"/>
+
+  <!-- Outer Golden Medallion Coin -->
+  <circle cx="256" cy="246" r="198" fill="url(#goldRim)" filter="url(#neuShadow)"/>
+  <circle cx="256" cy="246" r="186" fill="#1b1d22" stroke="#5a3d0d" stroke-width="2"/>
+  <circle cx="256" cy="246" r="182" fill="url(#goldPlate)"/>
+
+  <!-- Inner Recessed Coin Base -->
+  <circle cx="256" cy="246" r="168" fill="#1a1c20" stroke="#fce08b" stroke-width="2"/>
+  <circle cx="256" cy="246" r="164" fill="url(#bgGrad)"/>
+  <circle cx="256" cy="246" r="164" fill="url(#threadPattern)"/>
+
+  <!-- Top Arched Text: SIP & CODE -->
+  <path id="textArc" d="M 125 210 A 155 155 0 0 1 387 210" fill="none"/>
+  <text font-family="Arial Black, Impact, sans-serif" font-weight="900" font-size="28" fill="#fff4c2" filter="url(#embossShadow)" letter-spacing="4">
+    <textPath href="#textArc" startOffset="50%" text-anchor="middle">
+      SIP &amp; CODE
+    </textPath>
+  </text>
+
+  <!-- Right Badge: CERTIFIED PREMIUM ASSET -->
+  <g transform="translate(370, 195)" filter="url(#embossShadow)">
+    <text font-family="sans-serif" font-size="7" font-weight="900" fill="#f5d061" text-anchor="middle" letter-spacing="1">CERTIFIED</text>
+    <text font-family="sans-serif" font-size="7" font-weight="900" fill="#f5d061" text-anchor="middle" y="9" letter-spacing="1">PREMIUM</text>
+    <text font-family="sans-serif" font-size="7" font-weight="900" fill="#f5d061" text-anchor="middle" y="18" letter-spacing="1">ASSET</text>
+    <!-- Hexagon icon -->
+    <polygon points="0,24 6,27 6,34 0,37 -6,34 -6,27" fill="#f5d061" stroke="#8a5a12" stroke-width="1"/>
+    <text font-family="sans-serif" font-size="5" font-weight="bold" fill="#1a1c20" text-anchor="middle" y="32">FO3</text>
+  </g>
+
+  <!-- Developer Thread-Art Character Illustration -->
+  <g id="characterIllustration" transform="translate(140, 125)">
+    <!-- Backwards Cap -->
+    <path d="M 40 60 C 45 20, 160 10, 185 60 C 210 70, 225 90, 205 105 C 180 110, 160 90, 155 85 C 120 85, 60 85, 40 60 Z" fill="url(#capGrad)" stroke="#ffd700" stroke-width="3"/>
+    <path d="M 60 45 C 90 35, 140 35, 165 55" stroke="#ffffff" stroke-width="3" stroke-linecap="round" fill="none" opacity="0.6"/>
+
+    <!-- Head / Face -->
+    <path d="M 55 65 C 50 110, 60 150, 100 175 C 145 195, 180 165, 185 125 C 190 95, 180 70, 165 65 Z" fill="url(#skinGrad)" stroke="#4a1515" stroke-width="2"/>
+
+    <!-- Thread Highlights on Face -->
+    <path d="M 65 95 C 75 125, 95 145, 125 155" stroke="#ffdfba" stroke-width="3" fill="none" stroke-linecap="round" opacity="0.5"/>
+    <path d="M 75 80 C 85 85, 100 85, 110 80" stroke="#2b0a0a" stroke-width="4" stroke-linecap="round" fill="none"/> <!-- Eyebrow -->
+    <ellipse cx="95" cy="95" rx="9" ry="8" fill="#ffffff"/> <!-- Eye white -->
+    <ellipse cx="96" cy="95" rx="5" ry="5" fill="#1b1c20"/> <!-- Pupil -->
+    <circle cx="98" cy="93" r="2" fill="#ffffff"/> <!-- Specular dot -->
+
+    <!-- Beard Texture -->
+    <path d="M 55 115 C 55 160, 85 185, 125 185 C 150 185, 175 165, 180 135 C 160 145, 130 145, 115 130 C 95 130, 75 120, 55 115 Z" fill="#2d150b" stroke="#ffd700" stroke-width="1.5"/>
+    <!-- Beard stitch lines -->
+    <path d="M 70 140 Q 90 165 120 165" stroke="#663311" stroke-width="2" fill="none"/>
+    <path d="M 85 150 Q 105 172 135 170" stroke="#884411" stroke-width="2" fill="none"/>
+
+    <!-- Coffee Cup in Hand (Sipping) -->
+    <g transform="translate(100, 105)">
+      <!-- Cup Body -->
+      <path d="M 15 15 L 28 85 C 30 92, 70 92, 72 85 L 85 15 Z" fill="url(#cupGrad)" stroke="#ffd700" stroke-width="2.5" filter="url(#neuShadow)"/>
+      <!-- Cup Lid -->
+      <path d="M 10 15 C 10 8, 90 8, 90 15 L 85 20 L 15 20 Z" fill="#2c2d30" stroke="#f5d061" stroke-width="1.5"/>
+      <!-- LLD Logo on Cup -->
+      <rect x="26" y="38" width="48" height="24" rx="4" fill="#181a1f" opacity="0.85"/>
+      <text x="50" y="55" font-family="Arial Black, Impact, sans-serif" font-weight="900" font-size="14" fill="#ffffff" text-anchor="middle" letter-spacing="1">LLD™</text>
+
+      <!-- Hand holding cup -->
+      <path d="M 75 40 C 90 35, 105 50, 95 65 C 90 72, 80 75, 70 70" fill="url(#skinGrad)" stroke="#4a1515" stroke-width="2"/>
+      <path d="M 78 50 C 92 48, 102 60, 92 72" stroke="#ffdfba" stroke-width="2" fill="none" opacity="0.6"/>
+    </g>
+
+    <!-- Developer Collar & Tag -->
+    <path d="M 45 180 C 60 215, 180 215, 195 180" fill="url(#capGrad)" stroke="#ffd700" stroke-width="2"/>
+    <rect x="110" y="195" width="16" height="22" rx="4" fill="#111215" stroke="#f5d061" stroke-width="1.5"/>
+    <text x="118" y="210" font-family="monospace" font-size="9" font-weight="bold" fill="#38f9d7" text-anchor="middle">&gt;_</text>
+  </g>
+
+  <!-- Bottom Gold & Slate Banner: DEVELOPER LIFESTYLE - PREMIUM ASSETS -->
+  <g transform="translate(256, 395)" filter="url(#neuShadow)">
+    <!-- Banner Outer Gold Border -->
+    <rect x="-165" y="-18" width="330" height="36" rx="14" fill="url(#goldRim)" stroke="#573a08" stroke-width="2"/>
+    <!-- Banner Inner Navy/Slate Body -->
+    <rect x="-161" y="-14" width="322" height="28" rx="10" fill="#1a202c" stroke="#f5d061" stroke-width="1"/>
+    <!-- Banner Text -->
+    <text y="5" font-family="Arial, Helvetica, sans-serif" font-weight="900" font-size="11" fill="#e2e8f0" text-anchor="middle" letter-spacing="2" filter="url(#embossShadow)">
+      DEVELOPER LIFESTYLE - PREMIUM ASSETS
+    </text>
+  </g>
+
+  <!-- Center Mini Pill Button: >_ and Coffee Bean -->
+  <g transform="translate(256, 432)" filter="url(#neuShadow)">
+    <rect x="-38" y="-12" width="76" height="24" rx="12" fill="#15171c" stroke="url(#capGrad)" stroke-width="2"/>
+    <text x="-14" y="5" font-family="monospace" font-weight="bold" font-size="13" fill="#38f9d7">&gt;_</text>
+    <!-- Mini Coffee Bean -->
+    <ellipse cx="14" cy="0" rx="7" ry="5" fill="#c99b32" stroke="#fff4c2" stroke-width="1"/>
+    <path d="M 14 -4 Q 16 0 14 4" stroke="#5a3d0d" stroke-width="1.5" fill="none"/>
+  </g>
+
+  <!-- Bottom-Right Tag: THREAD-ART EDITION -->
+  <g transform="translate(415, 445)" filter="url(#neuShadow)">
+    <polygon points="-55,-14 45,-14 55,0 45,14 -55,14" fill="url(#goldRim)" stroke="#66440c" stroke-width="1.5"/>
+    <circle cx="-42" cy="0" r="3.5" fill="#1b1d22" stroke="#f5d061" stroke-width="1"/>
+    <text x="2" y="4" font-family="Arial, sans-serif" font-weight="900" font-size="8.5" fill="#231908" text-anchor="middle" letter-spacing="1">
+      THREAD-ART
+    </text>
+    <text x="2" y="11" font-family="Arial, sans-serif" font-weight="900" font-size="6" fill="#422e0e" text-anchor="middle" letter-spacing="1">
+      EDITION
+    </text>
+  </g>
+</svg>

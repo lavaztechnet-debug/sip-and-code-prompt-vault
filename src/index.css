@@ -1,0 +1,90 @@
+@import "tailwindcss";
+
+@theme {
+  --color-neu-bg: #E6E2D3;
+  --color-neu-shadow-dark: #C5C1B3;
+  --color-neu-shadow-light: #FFFFFF;
+  --color-neu-text: #4A4538;
+  --color-neu-text-light: #867E6E;
+  --color-neu-accent: #2D2A24;
+}
+
+@layer utilities {
+  .neu-flat {
+    background-color: var(--color-neu-bg);
+    box-shadow: 10px 10px 20px var(--color-neu-shadow-dark), -10px -10px 20px var(--color-neu-shadow-light);
+  }
+  .neu-pressed {
+    background-color: var(--color-neu-bg);
+    box-shadow: inset 4px 4px 8px var(--color-neu-shadow-dark), inset -4px -4px 8px var(--color-neu-shadow-light);
+  }
+  .neu-button {
+    background-color: var(--color-neu-bg);
+    box-shadow: 6px 6px 12px var(--color-neu-shadow-dark), -6px -6px 12px var(--color-neu-shadow-light);
+    transition: all 0.2s ease;
+  }
+  .neu-button:active {
+    box-shadow: inset 4px 4px 8px var(--color-neu-shadow-dark), inset -4px -4px 8px var(--color-neu-shadow-light);
+  }
+  .neu-convex {
+    background: linear-gradient(145deg, var(--color-neu-convex-1, #f6f2e2), var(--color-neu-convex-2, #cfcbc0));
+    box-shadow: 10px 10px 20px var(--color-neu-shadow-dark), -10px -10px 20px var(--color-neu-shadow-light);
+  }
+  .neu-concave {
+    background: linear-gradient(145deg, var(--color-neu-concave-1, #cfcbc0), var(--color-neu-concave-2, #f6f2e2));
+    box-shadow: 10px 10px 20px var(--color-neu-shadow-dark), -10px -10px 20px var(--color-neu-shadow-light);
+  }
+
+  /* Tactile Neumorphic Feedback Animations */
+  @keyframes neu-success-pop {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.025); box-shadow: 0 0 16px rgba(45, 42, 36, 0.15), inset 2px 2px 4px var(--color-neu-shadow-dark); }
+    100% { transform: scale(1); }
+  }
+
+  @keyframes neu-exec-glow {
+    0% { box-shadow: 10px 10px 20px var(--color-neu-shadow-dark), -10px -10px 20px var(--color-neu-shadow-light); }
+    50% { box-shadow: 0 0 20px rgba(245, 158, 11, 0.35), 6px 6px 14px var(--color-neu-shadow-dark), -6px -6px 14px var(--color-neu-shadow-light); }
+    100% { box-shadow: 10px 10px 20px var(--color-neu-shadow-dark), -10px -10px 20px var(--color-neu-shadow-light); }
+  }
+
+  @keyframes neu-pulse-subtle {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.75; transform: scale(0.96); }
+  }
+
+  .animate-neu-success {
+    animation: neu-success-pop 0.35s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  }
+
+  .animate-neu-exec {
+    animation: neu-exec-glow 0.8s ease-in-out forwards;
+  }
+
+  .animate-neu-pulse {
+    animation: neu-pulse-subtle 1.8s ease-in-out infinite;
+  }
+}
+
+body {
+  background-color: var(--color-neu-bg);
+  color: var(--color-neu-text);
+  overflow-x: hidden;
+  font-family: ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+}
+
+/* Hide scrollbar for clean UI */
+::-webkit-scrollbar {
+  width: 0px;
+  background: transparent;
+}
+
+@layer utilities {
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  .no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+}

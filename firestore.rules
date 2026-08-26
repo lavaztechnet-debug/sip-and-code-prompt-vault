@@ -1,0 +1,22 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // User private documents (custom prompts, favorites, chat history, settings)
+    match /users/{userId}/{document=**} {
+      allow read, write: if request.auth != null && request.auth.uid == userId;
+    }
+    
+    // Public/shared prompt templates repository
+    match /prompts/{promptId} {
+      allow read: if true;
+      allow write: if request.auth != null;
+    }
+
+    // Google Keep studio synchronized notes
+    match /keep_notes/{noteId} {
+      allow read: if request.auth != null && (resource == null || resource.data.userId == request.auth.uid);
+      allow create: if request.auth != null && request.resource.data.userId == request.auth.uid;
+      allow update, delete: if request.auth != null && resource.data.userId == request.auth.uid;
+    }
+  }
+}

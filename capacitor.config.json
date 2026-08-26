@@ -1,0 +1,8 @@
+{
+  "appId": "com.sipandcode.promptvault",
+  "appName": "Sip & Code Vault",
+  "webDir": "dist",
+  "server": {
+    "androidScheme": "https"
+  }
+}
