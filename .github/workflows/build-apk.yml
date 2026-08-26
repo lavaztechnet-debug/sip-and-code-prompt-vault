@@ -37,6 +37,19 @@ jobs:
         run: |
           npx cap add android || true
           npx cap sync android
+          
+          # Fix duplicate Kotlin stdlib-jdk7 / stdlib-jdk8 classes in Gradle
+          if [ -f "android/app/build.gradle" ]; then
+            echo "" >> android/app/build.gradle
+            echo "configurations.all {" >> android/app/build.gradle
+            echo "    resolutionStrategy {" >> android/app/build.gradle
+            echo "        capabilitiesResolution.withCapability(\"org.jetbrains.kotlin:kotlin-stdlib-jdk7\") { select(\"org.jetbrains.kotlin:kotlin-stdlib:1.8.22\") }" >> android/app/build.gradle
+            echo "        capabilitiesResolution.withCapability(\"org.jetbrains.kotlin:kotlin-stdlib-jdk8\") { select(\"org.jetbrains.kotlin:kotlin-stdlib:1.8.22\") }" >> android/app/build.gradle
+            echo "    }" >> android/app/build.gradle
+            echo "    exclude group: 'org.jetbrains.kotlin', module: 'kotlin-stdlib-jdk7'" >> android/app/build.gradle
+            echo "    exclude group: 'org.jetbrains.kotlin', module: 'kotlin-stdlib-jdk8'" >> android/app/build.gradle
+            echo "}" >> android/app/build.gradle
+          fi
 
       - name: Grant Execute Permission for Gradle Wrapper
         run: chmod +x android/gradlew
