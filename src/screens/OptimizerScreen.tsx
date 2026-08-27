@@ -231,7 +231,7 @@ export const OptimizerScreen: React.FC = () => {
   };
 
   return (
-    <div className="px-4 sm:px-6 pt-[max(14px,calc(env(safe-area-inset-top,0px)+14px))] pb-[max(86px,calc(env(safe-area-inset-bottom,0px)+86px))] animate-fade-in h-full flex flex-col gap-4 sm:gap-5">
+    <div className="px-4 sm:px-6 pt-[max(14px,calc(env(safe-area-inset-top,0px)+14px))] pb-[max(86px,calc(env(safe-area-inset-bottom,0px)+86px))] animate-fade-in min-h-full flex flex-col gap-4 sm:gap-5">
       
       {/* Header */}
       <header className="neu-flat rounded-[24px] sm:rounded-[28px] p-4 sm:p-5 flex flex-col justify-between border border-[var(--color-neu-shadow-light)]/40 gap-3">

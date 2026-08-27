@@ -15,7 +15,7 @@ export const ProductStudioScreen: React.FC = () => {
   };
 
   return (
-    <div className="px-4 sm:px-6 pt-[max(14px,calc(env(safe-area-inset-top,0px)+14px))] pb-[max(86px,calc(env(safe-area-inset-bottom,0px)+86px))] animate-fade-in flex flex-col h-full gap-4 sm:gap-6">
+    <div className="px-4 sm:px-6 pt-[max(14px,calc(env(safe-area-inset-top,0px)+14px))] pb-[max(86px,calc(env(safe-area-inset-bottom,0px)+86px))] animate-fade-in flex flex-col min-h-full gap-4 sm:gap-6">
       {/* Brand & Studio Showcase Header */}
       <header className="neu-flat rounded-[24px] sm:rounded-[28px] p-5 sm:p-7 flex flex-col justify-center border border-[var(--color-neu-shadow-light)]/40">
         <div className="flex items-center gap-4">

@@ -93,7 +93,7 @@ export const VaultScreen: React.FC = () => {
   };
 
   return (
-    <div className="px-4 sm:px-6 pt-[max(14px,calc(env(safe-area-inset-top,0px)+14px))] pb-[max(86px,calc(env(safe-area-inset-bottom,0px)+86px))] animate-fade-in h-full flex flex-col gap-4 sm:gap-6">
+    <div className="px-4 sm:px-6 pt-[max(14px,calc(env(safe-area-inset-top,0px)+14px))] pb-[max(86px,calc(env(safe-area-inset-bottom,0px)+86px))] animate-fade-in min-h-full flex flex-col gap-4 sm:gap-6">
       <header className="neu-flat rounded-[24px] sm:rounded-[28px] p-5 sm:p-6 flex flex-col justify-center border border-[var(--color-neu-shadow-light)]/40">
         <div className="flex justify-between items-center mb-3">
           <h1 className="text-[9.5px] sm:text-[10px] uppercase tracking-widest font-bold opacity-60">Master Vault • {prompts.length} Prompts</h1>
