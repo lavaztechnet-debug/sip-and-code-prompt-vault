@@ -14,6 +14,7 @@ import { LabScreen } from './screens/LabScreen';
 import { ProductStudioScreen } from './screens/ProductStudioScreen';
 import { SandboxScreen } from './screens/SandboxScreen';
 import { DeploymentScreen } from './screens/DeploymentScreen';
+import { DynamicBackground } from './components/DynamicBackground';
 
 const MainLayout: React.FC = () => {
   const { currentScreen, activeTheme } = useVault();
@@ -35,6 +36,7 @@ const MainLayout: React.FC = () => {
 
   return (
     <div className="h-[100dvh] w-full bg-[var(--color-neu-bg)] text-[var(--color-neu-text)] relative overflow-hidden flex flex-col select-none">
+      <DynamicBackground />
       {/* Floating Global Theme Quick-Switcher respecting Top Safe Area (Cutout aware) */}
       <div className="fixed top-[max(12px,calc(env(safe-area-inset-top,0px)+10px))] right-4 z-40">
         <button
