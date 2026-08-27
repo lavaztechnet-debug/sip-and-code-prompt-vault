@@ -9,7 +9,7 @@ import { triggerHaptic } from './utils/haptics';
 import { CommandCenterScreen } from './screens/CommandCenterScreen';
 import { VaultScreen } from './screens/VaultScreen';
 import { CreatorScreen } from './screens/CreatorScreen';
-import { WorkspaceHubScreen } from './screens/WorkspaceHubScreen';
+import { OptimizerScreen } from './screens/OptimizerScreen';
 import { LabScreen } from './screens/LabScreen';
 import { ProductStudioScreen } from './screens/ProductStudioScreen';
 import { SandboxScreen } from './screens/SandboxScreen';
@@ -24,7 +24,7 @@ const MainLayout: React.FC = () => {
       case 'command_center': return <CommandCenterScreen />;
       case 'vault': return <VaultScreen />;
       case 'creator': return <CreatorScreen />;
-      case 'workspace': return <WorkspaceHubScreen />;
+      case 'optimizer': return <OptimizerScreen />;
       case 'lab': return <LabScreen />;
       case 'product_studio': return <ProductStudioScreen />;
       case 'sandbox': return <SandboxScreen />;

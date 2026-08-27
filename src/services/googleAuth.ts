@@ -32,7 +32,7 @@ provider.setCustomParameters({
 });
 
 let isSigningIn = false;
-let cachedAccessToken: string | null = null;
+let cachedAccessToken: string | null = typeof window !== 'undefined' ? sessionStorage.getItem('google_chat_access_token') : null;
 let cachedUser: User | null = null;
 
 export const initAuth = (
@@ -42,14 +42,18 @@ export const initAuth = (
   return onAuthStateChanged(auth, async (user: User | null) => {
     cachedUser = user;
     if (user) {
-      if (cachedAccessToken) {
-        if (onAuthSuccess) onAuthSuccess(user, cachedAccessToken);
+      const storedToken = cachedAccessToken || (typeof window !== 'undefined' ? sessionStorage.getItem('google_chat_access_token') : null);
+      if (storedToken) {
+        cachedAccessToken = storedToken;
+        if (onAuthSuccess) onAuthSuccess(user, storedToken);
       } else if (!isSigningIn) {
-        // Token was cleared on page reload or not in memory
         if (onAuthFailure) onAuthFailure();
       }
     } else {
       cachedAccessToken = null;
+      if (typeof window !== 'undefined') {
+        sessionStorage.removeItem('google_chat_access_token');
+      }
       if (onAuthFailure) onAuthFailure();
     }
   });
@@ -65,6 +69,9 @@ export const googleSignIn = async (): Promise<{ user: User; accessToken: string 
     }
 
     cachedAccessToken = credential.accessToken;
+    if (typeof window !== 'undefined') {
+      sessionStorage.setItem('google_chat_access_token', credential.accessToken);
+    }
     cachedUser = result.user;
     return { user: result.user, accessToken: cachedAccessToken };
   } catch (error: any) {
@@ -76,6 +83,9 @@ export const googleSignIn = async (): Promise<{ user: User; accessToken: string 
 };
 
 export const getAccessToken = (): string | null => {
+  if (!cachedAccessToken && typeof window !== 'undefined') {
+    cachedAccessToken = sessionStorage.getItem('google_chat_access_token');
+  }
   return cachedAccessToken;
 };
 
@@ -87,4 +97,7 @@ export const googleSignOut = async (): Promise<void> => {
   await signOut(auth);
   cachedAccessToken = null;
   cachedUser = null;
+  if (typeof window !== 'undefined') {
+    sessionStorage.removeItem('google_chat_access_token');
+  }
 };

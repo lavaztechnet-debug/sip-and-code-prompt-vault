@@ -4,7 +4,9 @@ import { Category, Prompt } from '../types';
 import { triggerHaptic } from '../utils/haptics';
 import { createKeepNote } from '../services/googleKeep';
 import { ConfirmModal } from '../components/ConfirmModal';
-import { Search, Copy, Star, Play, StickyNote, MessageSquare, Check } from 'lucide-react';
+import { PromptInspectModal } from '../components/PromptInspectModal';
+import { FeatureGuideModal } from '../components/FeatureGuideModal';
+import { Search, Copy, Star, Play, StickyNote, Sparkles, Check, Eye, BookOpen } from 'lucide-react';
 
 const CATEGORIES: Category[] = [
   'All',
@@ -29,6 +31,8 @@ export const VaultScreen: React.FC = () => {
   const [copiedId, setCopiedId] = useState<string | null>(null);
   const [keepConfirmPrompt, setKeepConfirmPrompt] = useState<Prompt | null>(null);
   const [savedKeepId, setSavedKeepId] = useState<string | null>(null);
+  const [inspectingPrompt, setInspectingPrompt] = useState<Prompt | null>(null);
+  const [isGuideOpen, setIsGuideOpen] = useState(false);
   
   const filteredPrompts = prompts.filter(p => {
     const matchesSearch = p.title.toLowerCase().includes(search.toLowerCase()) || 
@@ -82,16 +86,29 @@ export const VaultScreen: React.FC = () => {
     setTimeout(() => setSavedKeepId(null), 2500);
   };
 
-  const handleSendToChat = (prompt: Prompt) => {
+  const handleOptimizePrompt = (prompt: Prompt) => {
     setActivePrompt(prompt);
-    setCurrentScreen('workspace');
+    setCurrentScreen('optimizer');
     triggerHaptic('medium');
   };
 
   return (
     <div className="px-4 sm:px-6 pt-[max(14px,calc(env(safe-area-inset-top,0px)+14px))] pb-[max(86px,calc(env(safe-area-inset-bottom,0px)+86px))] animate-fade-in h-full flex flex-col gap-4 sm:gap-6">
       <header className="neu-flat rounded-[24px] sm:rounded-[28px] p-5 sm:p-6 flex flex-col justify-center border border-[var(--color-neu-shadow-light)]/40">
-        <h1 className="text-[9.5px] sm:text-[10px] uppercase tracking-widest font-bold opacity-60 mb-3">Master Vault • {prompts.length} Prompts</h1>
+        <div className="flex justify-between items-center mb-3">
+          <h1 className="text-[9.5px] sm:text-[10px] uppercase tracking-widest font-bold opacity-60">Master Vault • {prompts.length} Prompts</h1>
+          <button
+            onClick={() => {
+              triggerHaptic('light');
+              setIsGuideOpen(true);
+            }}
+            className="neu-button px-2.5 py-1 rounded-full text-[8.5px] sm:text-[9px] font-bold uppercase tracking-wider text-[var(--color-neu-accent)] flex items-center gap-1 cursor-pointer hover:text-[var(--color-neu-text)]"
+            title="Step-by-Step Feature Guide"
+          >
+            <BookOpen size={11} />
+            <span>Guide</span>
+          </button>
+        </div>
         <div className="neu-pressed rounded-full p-1.5 flex items-center mb-3">
           <Search className="ml-3 text-[var(--color-neu-text-light)] shrink-0" size={18} />
           <input 
@@ -124,58 +141,101 @@ export const VaultScreen: React.FC = () => {
         {filteredPrompts.map(prompt => (
           <div key={prompt.id} className="neu-flat rounded-[22px] sm:rounded-[24px] p-4 sm:p-5 flex flex-col gap-3">
             <div className="flex justify-between items-start gap-2">
-              <div className="flex-1 pr-2 min-w-0">
-                <span className="inline-block px-2.5 py-0.5 rounded-full text-[9px] font-bold uppercase tracking-wider neu-pressed text-[var(--color-neu-accent)] mb-1.5">
-                  {prompt.category}
-                </span>
-                <h3 className="text-xs sm:text-sm font-bold leading-tight truncate">{prompt.title}</h3>
-              </div>
-              <button 
-                onClick={() => handleToggleFavorite(prompt.id)}
-                className={`p-2.5 rounded-xl cursor-pointer shrink-0 ${prompt.isFavorite ? 'neu-pressed text-[var(--color-neu-accent)]' : 'neu-button text-[var(--color-neu-text-light)]'}`}
+              <div 
+                className="flex-1 pr-2 min-w-0 cursor-pointer group"
+                onClick={() => {
+                  setInspectingPrompt(prompt);
+                  triggerHaptic('light');
+                }}
               >
-                <Star size={15} fill={prompt.isFavorite ? 'currentColor' : 'none'} />
-              </button>
+                <div className="flex items-center gap-2 mb-1.5">
+                  <span className="inline-block px-2.5 py-0.5 rounded-full text-[9px] font-bold uppercase tracking-wider neu-pressed text-[var(--color-neu-accent)]">
+                    {prompt.category}
+                  </span>
+                  <span className="text-[9.5px] font-mono text-[var(--color-neu-text-light)] opacity-60">
+                    {prompt.id}
+                  </span>
+                </div>
+                <h3 className="text-xs sm:text-sm font-bold leading-tight truncate group-hover:text-[var(--color-neu-accent)] transition-colors flex items-center gap-1.5">
+                  <span>{prompt.title}</span>
+                </h3>
+              </div>
+              <div className="flex items-center gap-1.5 shrink-0">
+                <button
+                  onClick={() => {
+                    setInspectingPrompt(prompt);
+                    triggerHaptic('light');
+                  }}
+                  className="p-2 rounded-xl neu-button text-[var(--color-neu-text-light)] hover:text-[var(--color-neu-accent)] cursor-pointer"
+                  title="Inspect Prompt"
+                >
+                  <Eye size={15} />
+                </button>
+                <button 
+                  onClick={() => handleToggleFavorite(prompt.id)}
+                  className={`p-2 rounded-xl cursor-pointer shrink-0 ${prompt.isFavorite ? 'neu-pressed text-[var(--color-neu-accent)]' : 'neu-button text-[var(--color-neu-text-light)]'}`}
+                  title="Toggle Favorite"
+                >
+                  <Star size={15} fill={prompt.isFavorite ? 'currentColor' : 'none'} />
+                </button>
+              </div>
             </div>
             
-            <p className="text-[11px] sm:text-xs text-[var(--color-neu-text-light)] line-clamp-2 leading-relaxed font-mono opacity-80">
+            <p 
+              onClick={() => {
+                setInspectingPrompt(prompt);
+                triggerHaptic('light');
+              }}
+              className="text-[11px] sm:text-xs text-[var(--color-neu-text-light)] line-clamp-2 leading-relaxed font-mono opacity-80 cursor-pointer hover:opacity-100 transition-opacity"
+            >
               {prompt.template}
             </p>
             
             {/* Action Grid */}
-            <div className="grid grid-cols-4 gap-2 pt-2 border-t border-[var(--color-neu-shadow-dark)]/30">
+            <div className="grid grid-cols-5 gap-1.5 sm:gap-2 pt-2 border-t border-[var(--color-neu-shadow-dark)]/30">
+              <button 
+                onClick={() => {
+                  setInspectingPrompt(prompt);
+                  triggerHaptic('light');
+                }}
+                className="neu-button py-2 rounded-xl flex items-center justify-center gap-1 text-[8px] sm:text-[9px] font-bold uppercase tracking-widest text-[var(--color-neu-text-light)] hover:text-[var(--color-neu-accent)] cursor-pointer transition-all"
+              >
+                <Eye size={11} /> <span>Inspect</span>
+              </button>
+
               <button 
                 onClick={() => handleCopy(prompt.template, prompt.id)}
-                className={`py-2 rounded-xl flex items-center justify-center gap-1 text-[8.5px] sm:text-[9px] font-bold uppercase tracking-widest cursor-pointer transition-all ${
+                className={`py-2 rounded-xl flex items-center justify-center gap-1 text-[8px] sm:text-[9px] font-bold uppercase tracking-widest cursor-pointer transition-all ${
                   copiedId === prompt.id ? 'neu-pressed animate-neu-success text-emerald-600 font-bold' : 'neu-button text-[var(--color-neu-text)]'
                 }`}
               >
-                {copiedId === prompt.id ? <Check size={12} className="text-emerald-600" /> : <Copy size={12} />}
+                {copiedId === prompt.id ? <Check size={11} className="text-emerald-600" /> : <Copy size={11} />}
                 <span>{copiedId === prompt.id ? 'Copied' : 'Copy'}</span>
               </button>
 
               <button 
                 onClick={() => handleAskAI(prompt)}
-                className="neu-convex py-2 rounded-xl flex items-center justify-center gap-1 text-[8.5px] sm:text-[9px] font-bold uppercase tracking-widest text-[var(--color-neu-accent)] cursor-pointer hover:shadow-md transition-all active:animate-neu-exec"
+                className="neu-convex py-2 rounded-xl flex items-center justify-center gap-1 text-[8px] sm:text-[9px] font-bold uppercase tracking-widest text-[var(--color-neu-accent)] cursor-pointer hover:shadow-md transition-all active:animate-neu-exec"
               >
-                <Play size={12} /> <span>Ask AI</span>
+                <Play size={11} /> <span>Ask AI</span>
               </button>
 
               <button 
                 onClick={() => handleSaveToKeep(prompt)}
-                className={`py-2 rounded-xl flex items-center justify-center gap-1 text-[8.5px] sm:text-[9px] font-bold uppercase tracking-widest cursor-pointer transition-all ${
+                className={`py-2 rounded-xl flex items-center justify-center gap-1 text-[8px] sm:text-[9px] font-bold uppercase tracking-widest cursor-pointer transition-all ${
                   savedKeepId === prompt.id ? 'neu-pressed animate-neu-success text-emerald-600 font-bold' : 'neu-button text-[var(--color-neu-text-light)] hover:text-[var(--color-neu-accent)]'
                 }`}
               >
-                {savedKeepId === prompt.id ? <Check size={12} className="text-emerald-600" /> : <StickyNote size={12} />}
+                {savedKeepId === prompt.id ? <Check size={11} className="text-emerald-600" /> : <StickyNote size={11} />}
                 <span>{savedKeepId === prompt.id ? 'Saved' : 'Keep'}</span>
               </button>
 
               <button 
-                onClick={() => handleSendToChat(prompt)}
-                className="neu-button py-2 rounded-xl flex items-center justify-center gap-1 text-[8.5px] sm:text-[9px] font-bold uppercase tracking-widest text-[var(--color-neu-text-light)] hover:text-[var(--color-neu-accent)] cursor-pointer"
+                onClick={() => handleOptimizePrompt(prompt)}
+                className="neu-button py-2 rounded-xl flex items-center justify-center gap-1 text-[8px] sm:text-[9px] font-bold uppercase tracking-widest text-[var(--color-neu-text-light)] hover:text-[var(--color-neu-accent)] cursor-pointer"
+                title="Refine & Optimize Prompt"
               >
-                <MessageSquare size={12} /> <span>Chat</span>
+                <Sparkles size={11} /> <span>Refine</span>
               </button>
             </div>
           </div>
@@ -193,6 +253,20 @@ export const VaultScreen: React.FC = () => {
         confirmLabel="Save Note"
         onConfirm={confirmSaveToKeep}
         onCancel={() => setKeepConfirmPrompt(null)}
+      />
+
+      <PromptInspectModal
+        prompt={inspectingPrompt}
+        isOpen={!!inspectingPrompt}
+        onClose={() => setInspectingPrompt(null)}
+        onAskAI={handleAskAI}
+        onToggleFavorite={handleToggleFavorite}
+        onOptimize={handleOptimizePrompt}
+      />
+
+      <FeatureGuideModal
+        isOpen={isGuideOpen}
+        onClose={() => setIsGuideOpen(false)}
       />
     </div>
   );

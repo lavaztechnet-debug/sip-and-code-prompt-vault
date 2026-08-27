@@ -2,7 +2,7 @@ import React from 'react';
 import { useVault } from '../context/VaultContext';
 import { triggerHaptic } from '../utils/haptics';
 import { ScreenName } from '../types';
-import { Home, Library, PenTool, Beaker, Zap, MessageSquare, Palette, TerminalSquare } from 'lucide-react';
+import { Home, Library, PenTool, Beaker, Zap, Sparkles, Palette, TerminalSquare } from 'lucide-react';
 
 export const Navigation: React.FC = () => {
   const { currentScreen, setCurrentScreen } = useVault();
@@ -18,7 +18,7 @@ export const Navigation: React.FC = () => {
     { id: 'command_center', label: 'Command', icon: <Home size={18} /> },
     { id: 'vault', label: 'Vault', icon: <Library size={18} /> },
     { id: 'creator', label: 'Creator', icon: <PenTool size={18} /> },
-    { id: 'workspace', label: 'Workspace', icon: <MessageSquare size={18} /> },
+    { id: 'optimizer', label: 'Refiner', icon: <Sparkles size={18} /> },
     { id: 'lab', label: 'Lab', icon: <Beaker size={18} /> },
     { id: 'product_studio', label: 'Studio', icon: <Zap size={18} /> },
     { id: 'sandbox', label: 'Themes', icon: <Palette size={18} /> },

@@ -1,9 +1,17 @@
 import { Prompt } from '../types';
 import { additional50MetaPrompts } from './metaPrompts50';
+import { generalAppsPrompts } from './generalAppsPrompts';
+import { categoryPrompts } from './categoryPrompts';
 
 export const initialPrompts: Prompt[] = [
   // --- ADDITIONAL 50 HIGH-VALUE META PROMPTS ---
   ...additional50MetaPrompts,
+
+  // --- 20 HIGH-VALUE GENERAL APPS PROMPTS ---
+  ...generalAppsPrompts,
+
+  // --- 40 HIGH-VALUE PROMPTS (IMAGE & GALLERY, HORROR, MUSIC, UTILITY) ---
+  ...categoryPrompts,
 
   // --- META PROMPTS ---
   {

@@ -1,12 +1,11 @@
 {
-  "projectId": "prompt-vault-84435",
-  "appId": "1:519201989640:web:3b1bdd92c647325df8ddbd",
-  "apiKey": "AIzaSyC2mxSD3_Qmr_evReZPuTA_-8bYqKE-ydU",
-  "authDomain": "prompt-vault-84435.firebaseapp.com",
-  "firestoreDatabaseId": "ai-studio-promptvault-85956f27-be27-4e52-beed-58bfdbcf6c87",
-  "storageBucket": "prompt-vault-84435.firebasestorage.app",
-  "messagingSenderId": "519201989640",
+  "projectId": "gen-lang-client-0090943813",
+  "appId": "1:551691333933:web:84fb4ac01314270f4563a4",
+  "apiKey": "AIzaSyBqtRWKDGIwVvS0hljSaocWqoLGo9Wxkpw",
+  "authDomain": "gen-lang-client-0090943813.firebaseapp.com",
+  "storageBucket": "gen-lang-client-0090943813.firebasestorage.app",
+  "messagingSenderId": "551691333933",
   "measurementId": "",
-  "oAuthClientId": "519201989640-sb7mb45cpt57qvolju1377j11o6qjds6.apps.googleusercontent.com",
+  "oAuthClientId": "551691333933-a22jhus47ebd1nmo08in7t19e33f1c90.apps.googleusercontent.com",
   "recaptchaSiteKey": ""
 }

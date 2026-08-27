@@ -86,6 +86,6 @@ export type ScreenName =
   | 'creator'
   | 'lab'
   | 'product_studio'
-  | 'workspace'
+  | 'optimizer'
   | 'sandbox'
   | 'deployment';

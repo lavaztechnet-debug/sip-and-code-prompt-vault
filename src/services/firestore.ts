@@ -20,8 +20,9 @@ import { Prompt } from '../types';
 const app = getApps().length === 0 ? initializeApp(firebaseConfig) : getApps()[0];
 
 // Initialize Firestore with configured databaseId
-export const db = firebaseConfig.firestoreDatabaseId && firebaseConfig.firestoreDatabaseId !== '(default)'
-  ? getFirestore(app, firebaseConfig.firestoreDatabaseId)
+const cfg = firebaseConfig as Record<string, any>;
+export const db = cfg.firestoreDatabaseId && cfg.firestoreDatabaseId !== '(default)'
+  ? getFirestore(app, cfg.firestoreDatabaseId)
   : getFirestore(app);
 
 export type FirestoreSyncState = 'synced' | 'syncing' | 'offline' | 'error' | 'local_only';
