@@ -1,15 +1,17 @@
 import React, { useState } from 'react';
 import { useVault } from '../context/VaultContext';
 import { triggerHaptic } from '../utils/haptics';
-import { MessageSquare, StickyNote, ArrowRight, ShieldCheck, Terminal, Sparkles, Cpu, Zap, Cloud, CloudOff, RefreshCw, CheckCircle2, AlertTriangle, Award, BookOpen, HelpCircle } from 'lucide-react';
+import { MessageSquare, StickyNote, ArrowRight, ShieldCheck, Terminal, Sparkles, Cpu, Zap, Cloud, CloudOff, RefreshCw, CheckCircle2, AlertTriangle, Award, BookOpen, HelpCircle, Eye, Palette, Download } from 'lucide-react';
 import { getKeepNotes } from '../services/googleKeep';
 import { SipCodeEmblem } from '../components/SipCodeEmblem';
 import { FeatureGuideModal } from '../components/FeatureGuideModal';
+import { ExportVaultModal } from '../components/ExportVaultModal';
 
 export const CommandCenterScreen: React.FC = () => {
   const { prompts, profiles, activeProfile, termuxConfig, setCurrentScreen, syncState, lastSyncTime, triggerManualCloudSync } = useVault();
   const [isSyncingManual, setIsSyncingManual] = useState(false);
   const [isGuideOpen, setIsGuideOpen] = useState(false);
+  const [isExportOpen, setIsExportOpen] = useState(false);
   const keepNotes = getKeepNotes();
 
   const handleNavigate = (screen: any) => {
@@ -37,7 +39,7 @@ export const CommandCenterScreen: React.FC = () => {
       <header className="neu-flat rounded-[24px] sm:rounded-[28px] p-5 sm:p-7 flex flex-col justify-center relative border border-[var(--color-neu-shadow-light)]/40">
         <div className="flex justify-between items-start gap-3">
           <div className="flex items-center gap-3 sm:gap-4">
-            <SipCodeEmblem size="lg" showBadge withGlow className="shrink-0" />
+            <SipCodeEmblem size="lg" showBadge withGlow interactive className="shrink-0" />
             <div className="min-w-0">
               <div className="flex items-center gap-2">
                 <span className="text-[9px] sm:text-[10px] uppercase tracking-widest font-bold text-[var(--color-neu-accent)] truncate">
@@ -52,6 +54,9 @@ export const CommandCenterScreen: React.FC = () => {
               </h1>
               <p className="text-[11px] sm:text-xs text-[var(--color-neu-text-light)] mt-0.5 leading-tight">
                 Executive Prompt Vault &amp; Zero-Gradle Engineering Suite
+              </p>
+              <p className="text-[10px] sm:text-[11px] font-medium text-[var(--color-neu-accent)] mt-1 leading-tight tracking-wide flex items-center gap-1">
+                <span>A Russell Bedford Creation, LLD™️: A Lavaz Life Design:</span>
               </p>
             </div>
           </div>
@@ -155,6 +160,45 @@ export const CommandCenterScreen: React.FC = () => {
           </button>
         </div>
 
+        {/* Visual Style DNA Extractor Spotlight Card */}
+        <div className="sm:col-span-2 neu-flat rounded-[24px] p-5 flex flex-col justify-between gap-3 border border-[var(--color-neu-shadow-light)]/40 relative overflow-hidden">
+          <div className="flex justify-between items-center">
+            <div className="flex items-center gap-1.5">
+              <span className="w-2 h-2 rounded-full bg-[var(--color-neu-accent)] animate-pulse" />
+              <h2 className="text-[9.5px] sm:text-[10px] uppercase tracking-widest font-bold text-[var(--color-neu-accent)]">
+                Visual Intelligence Engine
+              </h2>
+            </div>
+            <span className="px-2 py-0.5 rounded-full text-[8.5px] font-mono neu-pressed text-emerald-600 font-bold">
+              Active Extractor
+            </span>
+          </div>
+          
+          <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
+            <div className="flex items-center gap-3">
+              <div className="w-11 h-11 rounded-[16px] neu-convex flex items-center justify-center text-[var(--color-neu-accent)] shrink-0 shadow-md">
+                <Eye size={22} />
+              </div>
+              <div>
+                <h3 className="text-xs sm:text-sm font-bold text-[var(--color-neu-text)]">
+                  Multimodal Visual Style DNA Extractor
+                </h3>
+                <p className="text-[10px] text-[var(--color-neu-text-light)] mt-0.5">
+                  Upload UI screenshots or assets to extract color palettes, 3D lighting, and Midjourney/Compose tokens.
+                </p>
+              </div>
+            </div>
+
+            <button
+              onClick={() => handleNavigate('style_dna')}
+              className="neu-convex w-full sm:w-auto px-4 py-2 rounded-xl text-[10px] font-bold uppercase tracking-wider text-[var(--color-neu-accent)] flex items-center justify-center gap-1.5 shrink-0 hover:shadow-md cursor-pointer transition-all active:scale-95"
+            >
+              <span>Launch Extractor</span>
+              <ArrowRight size={13} />
+            </button>
+          </div>
+        </div>
+
         {/* Prompt Refiner & Studio Spotlight Card */}
         <div className="sm:col-span-2 neu-flat rounded-[24px] p-5 flex flex-col justify-between gap-3 border border-[var(--color-neu-shadow-light)]/40">
           <div className="flex justify-between items-center">
@@ -193,14 +237,35 @@ export const CommandCenterScreen: React.FC = () => {
         </div>
 
         {/* Master Vault Button */}
-        <button 
-          onClick={() => handleNavigate('vault')}
-          className="neu-button rounded-[24px] p-5 flex flex-col justify-between items-start text-left cursor-pointer active:scale-98"
-        >
-          <span className="text-[9.5px] font-bold text-[var(--color-neu-text-light)] uppercase tracking-widest">Master Vault</span>
-          <span className="text-3xl font-serif text-[var(--color-neu-accent)] my-1">{prompts.length}</span>
-          <span className="text-[9px] text-[var(--color-neu-text-light)]">Prompts &amp; Meta-Templates</span>
-        </button>
+        <div className="neu-button rounded-[24px] p-5 flex flex-col justify-between items-start text-left relative group">
+          <div className="flex justify-between items-start w-full">
+            <span 
+              onClick={() => handleNavigate('vault')}
+              className="text-[9.5px] font-bold text-[var(--color-neu-text-light)] uppercase tracking-widest cursor-pointer"
+            >
+              Master Vault
+            </span>
+            <button
+              onClick={(e) => {
+                e.stopPropagation();
+                triggerHaptic('medium');
+                setIsExportOpen(true);
+              }}
+              className="neu-convex px-2 py-1 rounded-full text-[8.5px] font-mono text-[var(--color-neu-accent)] flex items-center gap-1 cursor-pointer hover:shadow-xs active:scale-95"
+              title="Export All Vault Prompts"
+            >
+              <Download size={10} />
+              <span>Export</span>
+            </button>
+          </div>
+          <div 
+            onClick={() => handleNavigate('vault')}
+            className="cursor-pointer w-full"
+          >
+            <span className="text-3xl font-serif text-[var(--color-neu-accent)] my-1 block">{prompts.length}</span>
+            <span className="text-[9px] text-[var(--color-neu-text-light)]">Prompts &amp; Meta-Templates</span>
+          </div>
+        </div>
 
         {/* Termux & Local Hub Button */}
         <button 
@@ -250,6 +315,13 @@ export const CommandCenterScreen: React.FC = () => {
       <FeatureGuideModal
         isOpen={isGuideOpen}
         onClose={() => setIsGuideOpen(false)}
+      />
+
+      {/* Export Vault Prompts Modal */}
+      <ExportVaultModal
+        isOpen={isExportOpen}
+        onClose={() => setIsExportOpen(false)}
+        prompts={prompts}
       />
     </div>
   );

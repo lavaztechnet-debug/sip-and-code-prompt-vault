@@ -17,7 +17,9 @@ import {
   Sliders, 
   Eye, 
   Code, 
-  CheckCircle2 
+  CheckCircle2,
+  Menu,
+  Dock
 } from 'lucide-react';
 
 export const SandboxScreen: React.FC = () => {
@@ -28,7 +30,9 @@ export const SandboxScreen: React.FC = () => {
     setTheme, 
     customThemeColors, 
     updateCustomThemeColors, 
-    resetCustomThemeColors 
+    resetCustomThemeColors,
+    navigationMode,
+    setNavigationMode 
   } = useVault();
 
   const [selectedCategory, setSelectedCategory] = useState<ThemeCategory | 'All'>('All');
@@ -372,88 +376,165 @@ export const SandboxScreen: React.FC = () => {
 
       {/* TAB 3: CUSTOM COLOR TUNER */}
       {activeTab === 'custom_tuner' && (
-        <div className="neu-flat rounded-[24px] p-6 flex flex-col gap-6">
-          <div className="flex items-center justify-between">
+        <div className="flex flex-col gap-6">
+          {/* Navigation Layout Preference */}
+          <div className="neu-flat rounded-[24px] p-6 flex flex-col gap-4">
             <div>
-              <h3 className="text-xs uppercase tracking-widest font-bold text-[var(--color-neu-accent)]">
-                Live Color Override Studio
+              <span className="text-[9.5px] uppercase tracking-widest font-bold text-[var(--color-neu-accent)]">
+                UI &amp; Navigation Ergonomics
+              </span>
+              <h3 className="text-sm font-serif italic text-[var(--color-neu-text)] mt-0.5">
+                Navigation Architecture
               </h3>
-              <p className="text-xs text-[var(--color-neu-text-light)] mt-1">
-                Directly tune active background, shadow, and accent colors for custom lighting conditions.
+              <p className="text-xs text-[var(--color-neu-text-light)] mt-0.5">
+                Select between the uncluttered Top Capsule &amp; Slide-over Tactile Drawer or classic Bottom Dock.
               </p>
             </div>
 
-            <button
-              onClick={() => {
-                resetCustomThemeColors();
-                triggerHaptic('light');
-              }}
-              className="px-3 py-1.5 rounded-[14px] neu-button text-xs font-bold text-[var(--color-neu-text-light)] hover:text-[var(--color-neu-text)] flex items-center gap-1.5 cursor-pointer"
-            >
-              <RotateCcw size={13} />
-              <span>Reset to Defaults</span>
-            </button>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+              <button
+                onClick={() => {
+                  setNavigationMode('drawer');
+                  triggerHaptic('medium');
+                }}
+                className={`p-4 rounded-[18px] flex items-start gap-3 text-left transition-all cursor-pointer ${
+                  navigationMode === 'drawer'
+                    ? 'neu-pressed text-[var(--color-neu-accent)] border border-[var(--color-neu-accent)]/30'
+                    : 'neu-button text-[var(--color-neu-text)]'
+                }`}
+              >
+                <div className="p-2 rounded-xl neu-convex text-[var(--color-neu-accent)] shrink-0">
+                  <Menu size={18} />
+                </div>
+                <div>
+                  <div className="flex items-center gap-1.5">
+                    <span className="text-xs font-bold">Slide-Over Tactile Drawer</span>
+                    {navigationMode === 'drawer' && (
+                      <span className="px-1.5 py-0.2 rounded-full text-[8.5px] font-mono font-bold bg-[var(--color-neu-accent)] text-white">
+                        ACTIVE
+                      </span>
+                    )}
+                  </div>
+                  <p className="text-[10px] text-[var(--color-neu-text-light)] mt-1 leading-relaxed">
+                    Zero screen intrusion. Minimal top-left floating capsule that opens a categorized side hub.
+                  </p>
+                </div>
+              </button>
+
+              <button
+                onClick={() => {
+                  setNavigationMode('dock');
+                  triggerHaptic('medium');
+                }}
+                className={`p-4 rounded-[18px] flex items-start gap-3 text-left transition-all cursor-pointer ${
+                  navigationMode === 'dock'
+                    ? 'neu-pressed text-[var(--color-neu-accent)] border border-[var(--color-neu-accent)]/30'
+                    : 'neu-button text-[var(--color-neu-text)]'
+                }`}
+              >
+                <div className="p-2 rounded-xl neu-convex text-[var(--color-neu-text-light)] shrink-0">
+                  <Dock size={18} />
+                </div>
+                <div>
+                  <div className="flex items-center gap-1.5">
+                    <span className="text-xs font-bold">Bottom Navigation Dock</span>
+                    {navigationMode === 'dock' && (
+                      <span className="px-1.5 py-0.2 rounded-full text-[8.5px] font-mono font-bold bg-[var(--color-neu-accent)] text-white">
+                        ACTIVE
+                      </span>
+                    )}
+                  </div>
+                  <p className="text-[10px] text-[var(--color-neu-text-light)] mt-1 leading-relaxed">
+                    Classic fixed bottom scrollable dock with 9 quick-switch icons.
+                  </p>
+                </div>
+              </button>
+            </div>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-            {/* Background Color */}
-            <div className="neu-pressed rounded-[20px] p-4 flex flex-col gap-2">
-              <label className="text-xs font-bold text-[var(--color-neu-text)] flex items-center justify-between">
-                <span>Background Canvas</span>
-                <span className="font-mono text-[10px] text-[var(--color-neu-text-light)]">
-                  {customThemeColors?.bg || activeTheme.colors.bg}
-                </span>
-              </label>
-              <input
-                type="color"
-                value={customThemeColors?.bg || activeTheme.colors.bg}
-                onChange={e => updateCustomThemeColors({ bg: e.target.value })}
-                className="w-full h-10 rounded-[12px] cursor-pointer bg-transparent border-0"
-              />
+          <div className="neu-flat rounded-[24px] p-6 flex flex-col gap-6">
+            <div className="flex items-center justify-between">
+              <div>
+                <h3 className="text-xs uppercase tracking-widest font-bold text-[var(--color-neu-accent)]">
+                  Live Color Override Studio
+                </h3>
+                <p className="text-xs text-[var(--color-neu-text-light)] mt-1">
+                  Directly tune active background, shadow, and accent colors for custom lighting conditions.
+                </p>
+              </div>
+
+              <button
+                onClick={() => {
+                  resetCustomThemeColors();
+                  triggerHaptic('light');
+                }}
+                className="px-3 py-1.5 rounded-[14px] neu-button text-xs font-bold text-[var(--color-neu-text-light)] hover:text-[var(--color-neu-text)] flex items-center gap-1.5 cursor-pointer"
+              >
+                <RotateCcw size={13} />
+                <span>Reset to Defaults</span>
+              </button>
             </div>
 
-            {/* Accent Color */}
-            <div className="neu-pressed rounded-[20px] p-4 flex flex-col gap-2">
-              <label className="text-xs font-bold text-[var(--color-neu-text)] flex items-center justify-between">
-                <span>Accent Color</span>
-                <span className="font-mono text-[10px] text-[var(--color-neu-text-light)]">
-                  {customThemeColors?.accent || activeTheme.colors.accent}
-                </span>
-              </label>
-              <input
-                type="color"
-                value={customThemeColors?.accent || activeTheme.colors.accent}
-                onChange={e => updateCustomThemeColors({ accent: e.target.value })}
-                className="w-full h-10 rounded-[12px] cursor-pointer bg-transparent border-0"
-              />
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+              {/* Background Color */}
+              <div className="neu-pressed rounded-[20px] p-4 flex flex-col gap-2">
+                <label className="text-xs font-bold text-[var(--color-neu-text)] flex items-center justify-between">
+                  <span>Background Canvas</span>
+                  <span className="font-mono text-[10px] text-[var(--color-neu-text-light)]">
+                    {customThemeColors?.bg || activeTheme.colors.bg}
+                  </span>
+                </label>
+                <input
+                  type="color"
+                  value={customThemeColors?.bg || activeTheme.colors.bg}
+                  onChange={e => updateCustomThemeColors({ bg: e.target.value })}
+                  className="w-full h-10 rounded-[12px] cursor-pointer bg-transparent border-0"
+                />
+              </div>
+
+              {/* Accent Color */}
+              <div className="neu-pressed rounded-[20px] p-4 flex flex-col gap-2">
+                <label className="text-xs font-bold text-[var(--color-neu-text)] flex items-center justify-between">
+                  <span>Accent Color</span>
+                  <span className="font-mono text-[10px] text-[var(--color-neu-text-light)]">
+                    {customThemeColors?.accent || activeTheme.colors.accent}
+                  </span>
+                </label>
+                <input
+                  type="color"
+                  value={customThemeColors?.accent || activeTheme.colors.accent}
+                  onChange={e => updateCustomThemeColors({ accent: e.target.value })}
+                  className="w-full h-10 rounded-[12px] cursor-pointer bg-transparent border-0"
+                />
+              </div>
+
+              {/* Text Color */}
+              <div className="neu-pressed rounded-[20px] p-4 flex flex-col gap-2">
+                <label className="text-xs font-bold text-[var(--color-neu-text)] flex items-center justify-between">
+                  <span>Primary Text</span>
+                  <span className="font-mono text-[10px] text-[var(--color-neu-text-light)]">
+                    {customThemeColors?.text || activeTheme.colors.text}
+                  </span>
+                </label>
+                <input
+                  type="color"
+                  value={customThemeColors?.text || activeTheme.colors.text}
+                  onChange={e => updateCustomThemeColors({ text: e.target.value })}
+                  className="w-full h-10 rounded-[12px] cursor-pointer bg-transparent border-0"
+                />
+              </div>
             </div>
 
-            {/* Text Color */}
-            <div className="neu-pressed rounded-[20px] p-4 flex flex-col gap-2">
-              <label className="text-xs font-bold text-[var(--color-neu-text)] flex items-center justify-between">
-                <span>Primary Text</span>
-                <span className="font-mono text-[10px] text-[var(--color-neu-text-light)]">
-                  {customThemeColors?.text || activeTheme.colors.text}
-                </span>
-              </label>
-              <input
-                type="color"
-                value={customThemeColors?.text || activeTheme.colors.text}
-                onChange={e => updateCustomThemeColors({ text: e.target.value })}
-                className="w-full h-10 rounded-[12px] cursor-pointer bg-transparent border-0"
-              />
+            <div className="p-4 rounded-[18px] neu-pressed flex items-center justify-between text-xs font-mono text-[var(--color-neu-text-light)]">
+              <span>Changes apply immediately across all application views and persistent state.</span>
+              <button
+                onClick={handleCopyTokens}
+                className="px-3 py-1 rounded-[12px] neu-button text-[var(--color-neu-accent)] font-bold flex items-center gap-1 cursor-pointer"
+              >
+                <Copy size={12} />
+                <span>Copy CSS</span>
+              </button>
             </div>
-          </div>
-
-          <div className="p-4 rounded-[18px] neu-pressed flex items-center justify-between text-xs font-mono text-[var(--color-neu-text-light)]">
-            <span>Changes apply immediately across all application views and persistent state.</span>
-            <button
-              onClick={handleCopyTokens}
-              className="px-3 py-1 rounded-[12px] neu-button text-[var(--color-neu-accent)] font-bold flex items-center gap-1 cursor-pointer"
-            >
-              <Copy size={12} />
-              <span>Copy CSS</span>
-            </button>
           </div>
         </div>
       )}

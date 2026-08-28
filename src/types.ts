@@ -83,9 +83,13 @@ export interface ThemeStyle {
 export type ScreenName = 
   | 'command_center'
   | 'vault'
+  | 'style_dna'
   | 'creator'
   | 'lab'
   | 'product_studio'
   | 'optimizer'
   | 'sandbox'
   | 'deployment';
+
+export type NavigationMode = 'drawer' | 'dock';
+

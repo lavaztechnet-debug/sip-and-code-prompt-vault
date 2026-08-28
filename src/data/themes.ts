@@ -2,8 +2,128 @@ import { ThemeStyle } from '../types';
 
 export const AVAILABLE_THEMES: ThemeStyle[] = [
   {
+    id: 'sculpted_porcelain_3d',
+    name: 'Sculpted Porcelain (Extreme 3D)',
+    category: 'Light',
+    description: 'High-relief 3D porcelain ceramic with deep dual-offset directional shadows, crisp specular highlights, and gold CTA accents.',
+    isDark: false,
+    colors: {
+      bg: '#EEF1F8',
+      shadowDark: '#B8C1D6',
+      shadowLight: '#FFFFFF',
+      text: '#1E293B',
+      textLight: '#64748B',
+      accent: '#F59E0B',
+      convexGrad1: '#FFFFFF',
+      convexGrad2: '#DCE2F0',
+      concaveGrad1: '#DCE2F0',
+      concaveGrad2: '#FFFFFF',
+      border: '#CBD5E1'
+    }
+  },
+  {
+    id: 'pure_clay_3d',
+    name: 'Pure Tactile Clay (Extreme 3D)',
+    category: 'Light',
+    description: 'Heavy sculptural clay with deep bulbous bevels, pronounced drop shadows, and high tactile feedback.',
+    isDark: false,
+    colors: {
+      bg: '#E7E3D8',
+      shadowDark: '#BEB8A6',
+      shadowLight: '#FFFFFF',
+      text: '#3D382E',
+      textLight: '#7A7263',
+      accent: '#D97706',
+      convexGrad1: '#F7F4EC',
+      convexGrad2: '#D7D1C3',
+      concaveGrad1: '#D7D1C3',
+      concaveGrad2: '#F7F4EC',
+      border: '#CDC7B7'
+    }
+  },
+  {
+    id: 'nordic_polar_3d',
+    name: 'Nordic Polar Ice (Extreme 3D)',
+    category: 'Light',
+    description: 'High-contrast Scandinavian glacier white with deep arctic cobalt shadows and sharp sculpted bevels.',
+    isDark: false,
+    colors: {
+      bg: '#EDF2F7',
+      shadowDark: '#BDCAD8',
+      shadowLight: '#FFFFFF',
+      text: '#0F172A',
+      textLight: '#475569',
+      accent: '#0284C7',
+      convexGrad1: '#F8FAFC',
+      convexGrad2: '#D6E0EA',
+      concaveGrad1: '#D6E0EA',
+      concaveGrad2: '#F8FAFC',
+      border: '#CAD5E2'
+    }
+  },
+  {
+    id: 'alabaster_gold_3d',
+    name: 'Alabaster & 24k Gold (3D)',
+    category: 'Light',
+    description: 'Luxury warm ivory alabaster with sculpted 3D bevels and polished champagne gold buttons.',
+    isDark: false,
+    colors: {
+      bg: '#F4EFE6',
+      shadowDark: '#D0C6B5',
+      shadowLight: '#FFFFFF',
+      text: '#3C3326',
+      textLight: '#7C6E5A',
+      accent: '#B45309',
+      convexGrad1: '#FCF9F3',
+      convexGrad2: '#E3D9C9',
+      concaveGrad1: '#E3D9C9',
+      concaveGrad2: '#FCF9F3',
+      border: '#DCD1C0'
+    }
+  },
+  {
+    id: 'lavender_mist_3d',
+    name: 'Lavender Mist (Sculpted 3D)',
+    category: 'Light',
+    description: 'Soothing pale lilac-tinted white with deep tactile lilac shadows and luminous amethyst CTAs.',
+    isDark: false,
+    colors: {
+      bg: '#EBE9F5',
+      shadowDark: '#C2BEDB',
+      shadowLight: '#FFFFFF',
+      text: '#2E1065',
+      textLight: '#6B7280',
+      accent: '#7C3AED',
+      convexGrad1: '#F6F5FC',
+      convexGrad2: '#D8D4EC',
+      concaveGrad1: '#D8D4EC',
+      concaveGrad2: '#F6F5FC',
+      border: '#D1CCE5'
+    }
+  },
+  {
+    id: 'eucalyptus_sage_3d',
+    name: 'Eucalyptus Sage (3D Ceramic)',
+    category: 'Light',
+    description: 'Organic botanical porcelain with sculpted mint/sage relief and emerald accents.',
+    isDark: false,
+    colors: {
+      bg: '#E5EDE7',
+      shadowDark: '#BACBBE',
+      shadowLight: '#FFFFFF',
+      text: '#064E3B',
+      textLight: '#4B5563',
+      accent: '#059669',
+      convexGrad1: '#F2F7F4',
+      convexGrad2: '#D1DFD4',
+      concaveGrad1: '#D1DFD4',
+      concaveGrad2: '#F2F7F4',
+      border: '#C6D6C9'
+    }
+  },
+  {
     id: 'classic_sand',
-    name: 'Warm Sand',
+    name: 'Warm Sand Clay',
     category: 'Warm',
     description: 'Classic tactile clay neumorphism with warm earthy undertones and soft cream highlights.',
     isDark: false,
@@ -19,6 +139,66 @@ export const AVAILABLE_THEMES: ThemeStyle[] = [
       concaveGrad1: '#CFCBC0',
       concaveGrad2: '#F6F2E2',
       border: '#D8D4C5'
+    }
+  },
+  {
+    id: 'monochrome_studio',
+    name: 'Cast Gypsum Brutalist (3D)',
+    category: 'Light',
+    description: 'Swiss architectural neutral gypsum studio with high-contrast grayscale geometry and deep 3D bevels.',
+    isDark: false,
+    colors: {
+      bg: '#EAEAEA',
+      shadowDark: '#BFBFBF',
+      shadowLight: '#FFFFFF',
+      text: '#171717',
+      textLight: '#525252',
+      accent: '#0A0A0A',
+      convexGrad1: '#F7F7F7',
+      convexGrad2: '#D6D6D6',
+      concaveGrad1: '#D6D6D6',
+      concaveGrad2: '#F7F7F7',
+      border: '#CCCCCC'
+    }
+  },
+  {
+    id: 'terracotta_stone',
+    name: 'Tuscan Terracotta (3D)',
+    category: 'Warm',
+    description: 'Mediterranean sun-baked clay, blush granite, and rich Tuscan ceramic tones.',
+    isDark: false,
+    colors: {
+      bg: '#F3EAE5',
+      shadowDark: '#D4C5BD',
+      shadowLight: '#FFFFFF',
+      text: '#4A3531',
+      textLight: '#8C6D65',
+      accent: '#9E4738',
+      convexGrad1: '#FAF4F1',
+      convexGrad2: '#E2D5CF',
+      concaveGrad1: '#E2D5CF',
+      concaveGrad2: '#FAF4F1',
+      border: '#E0D0C8'
+    }
+  },
+  {
+    id: 'vintage_espresso',
+    name: 'Vintage Espresso Parchment',
+    category: 'Warm',
+    description: 'Handcrafted antiquarian parchment, rich roasted coffee bean, and warm sepia tones.',
+    isDark: false,
+    colors: {
+      bg: '#EBE2D5',
+      shadowDark: '#C9BEAD',
+      shadowLight: '#FAF5ED',
+      text: '#3E2723',
+      textLight: '#6D4C41',
+      accent: '#4E342E',
+      convexGrad1: '#F4ECE0',
+      convexGrad2: '#D6CBBD',
+      concaveGrad1: '#D6CBBD',
+      concaveGrad2: '#F4ECE0',
+      border: '#DDD2C3'
     }
   },
   {
@@ -62,46 +242,6 @@ export const AVAILABLE_THEMES: ThemeStyle[] = [
     }
   },
   {
-    id: 'nordic_frost',
-    name: 'Nordic Polar Frost',
-    category: 'Light',
-    description: 'Clean Scandinavian architectural white-gray palette with royal cobalt accents.',
-    isDark: false,
-    colors: {
-      bg: '#EEF2F6',
-      shadowDark: '#CAD3DC',
-      shadowLight: '#FFFFFF',
-      text: '#1E293B',
-      textLight: '#64748B',
-      accent: '#0284C7',
-      convexGrad1: '#F8FAFC',
-      convexGrad2: '#E2E8F0',
-      concaveGrad1: '#E2E8F0',
-      concaveGrad2: '#F8FAFC',
-      border: '#CBD5E1'
-    }
-  },
-  {
-    id: 'vintage_espresso',
-    name: 'Vintage Espresso',
-    category: 'Warm',
-    description: 'Handcrafted antiquarian parchment, rich roasted coffee bean, and warm sepia tones.',
-    isDark: false,
-    colors: {
-      bg: '#EBE2D5',
-      shadowDark: '#C9BEAD',
-      shadowLight: '#FAF5ED',
-      text: '#3E2723',
-      textLight: '#6D4C41',
-      accent: '#4E342E',
-      convexGrad1: '#F4ECE0',
-      convexGrad2: '#D6CBBD',
-      concaveGrad1: '#D6CBBD',
-      concaveGrad2: '#F4ECE0',
-      border: '#DDD2C3'
-    }
-  },
-  {
     id: 'emerald_phosphor',
     name: 'Emerald Phosphor',
     category: 'Cyber',
@@ -142,26 +282,6 @@ export const AVAILABLE_THEMES: ThemeStyle[] = [
     }
   },
   {
-    id: 'terracotta_stone',
-    name: 'Tuscan Terracotta',
-    category: 'Warm',
-    description: 'Mediterranean sun-baked clay, blush granite, and rich Tuscan ceramic tones.',
-    isDark: false,
-    colors: {
-      bg: '#F3EAE5',
-      shadowDark: '#D4C5BD',
-      shadowLight: '#FFFFFF',
-      text: '#4A3531',
-      textLight: '#8C6D65',
-      accent: '#9E4738',
-      convexGrad1: '#FAF4F1',
-      convexGrad2: '#E2D5CF',
-      concaveGrad1: '#E2D5CF',
-      concaveGrad2: '#FAF4F1',
-      border: '#E0D0C8'
-    }
-  },
-  {
     id: 'desert_amber',
     name: 'Desert Sunset Amber',
     category: 'Vibrant',
@@ -179,26 +299,6 @@ export const AVAILABLE_THEMES: ThemeStyle[] = [
       concaveGrad1: '#181411',
       concaveGrad2: '#2B231E',
       border: '#3B3029'
-    }
-  },
-  {
-    id: 'monochrome_studio',
-    name: 'Monochrome Industrial',
-    category: 'Light',
-    description: 'Swiss brutalist neutral studio with high-contrast grayscale geometry and deep tactile bevels.',
-    isDark: false,
-    colors: {
-      bg: '#EAEAEA',
-      shadowDark: '#C7C7C7',
-      shadowLight: '#FFFFFF',
-      text: '#171717',
-      textLight: '#525252',
-      accent: '#0A0A0A',
-      convexGrad1: '#F5F5F5',
-      convexGrad2: '#D9D9D9',
-      concaveGrad1: '#D9D9D9',
-      concaveGrad2: '#F5F5F5',
-      border: '#D0D0D0'
     }
   },
   {
@@ -243,4 +343,5 @@ export const AVAILABLE_THEMES: ThemeStyle[] = [
   }
 ];
 
-export const DEFAULT_THEME_ID = 'classic_sand';
+export const DEFAULT_THEME_ID = 'sculpted_porcelain_3d';
+

@@ -3,7 +3,7 @@ import { useVault } from '../context/VaultContext';
 import { triggerHaptic } from '../utils/haptics';
 import { pingTermuxBridge } from '../services/aiRunner';
 import { TermuxBridgeModal } from '../components/TermuxBridgeModal';
-import { BulkExportModal } from '../components/BulkExportModal';
+import { ExportVaultModal } from '../components/ExportVaultModal';
 import { SipCodeEmblem } from '../components/SipCodeEmblem';
 import { Terminal, Download, Share2, Copy, Check, RefreshCw, Cpu, Code2, ShieldCheck, Zap, FileJson, Layers } from 'lucide-react';
 
@@ -295,7 +295,7 @@ echo "🎉 Standalone APK built: $BUILD_DIR/app-aligned.apk"
         </div>
       </div>
 
-      <BulkExportModal
+      <ExportVaultModal
         isOpen={showBulkExportModal}
         onClose={() => setShowBulkExportModal(false)}
         prompts={prompts}

@@ -6,7 +6,8 @@ import { createKeepNote } from '../services/googleKeep';
 import { ConfirmModal } from '../components/ConfirmModal';
 import { PromptInspectModal } from '../components/PromptInspectModal';
 import { FeatureGuideModal } from '../components/FeatureGuideModal';
-import { Search, Copy, Star, Play, StickyNote, Sparkles, Check, Eye, BookOpen } from 'lucide-react';
+import { ExportVaultModal } from '../components/ExportVaultModal';
+import { Search, Copy, Star, Play, StickyNote, Sparkles, Check, Eye, BookOpen, Download, Share2 } from 'lucide-react';
 
 const CATEGORIES: Category[] = [
   'All',
@@ -33,6 +34,7 @@ export const VaultScreen: React.FC = () => {
   const [savedKeepId, setSavedKeepId] = useState<string | null>(null);
   const [inspectingPrompt, setInspectingPrompt] = useState<Prompt | null>(null);
   const [isGuideOpen, setIsGuideOpen] = useState(false);
+  const [isExportOpen, setIsExportOpen] = useState(false);
   
   const filteredPrompts = prompts.filter(p => {
     const matchesSearch = p.title.toLowerCase().includes(search.toLowerCase()) || 
@@ -97,17 +99,30 @@ export const VaultScreen: React.FC = () => {
       <header className="neu-flat rounded-[24px] sm:rounded-[28px] p-5 sm:p-6 flex flex-col justify-center border border-[var(--color-neu-shadow-light)]/40">
         <div className="flex justify-between items-center mb-3">
           <h1 className="text-[9.5px] sm:text-[10px] uppercase tracking-widest font-bold opacity-60">Master Vault • {prompts.length} Prompts</h1>
-          <button
-            onClick={() => {
-              triggerHaptic('light');
-              setIsGuideOpen(true);
-            }}
-            className="neu-button px-2.5 py-1 rounded-full text-[8.5px] sm:text-[9px] font-bold uppercase tracking-wider text-[var(--color-neu-accent)] flex items-center gap-1 cursor-pointer hover:text-[var(--color-neu-text)]"
-            title="Step-by-Step Feature Guide"
-          >
-            <BookOpen size={11} />
-            <span>Guide</span>
-          </button>
+          <div className="flex items-center gap-1.5">
+            <button
+              onClick={() => {
+                triggerHaptic('medium');
+                setIsExportOpen(true);
+              }}
+              className="neu-convex px-2.5 py-1 rounded-full text-[8.5px] sm:text-[9px] font-bold uppercase tracking-wider text-[var(--color-neu-accent)] flex items-center gap-1 cursor-pointer hover:shadow-md transition-all"
+              title="Export All Vault Prompts"
+            >
+              <Download size={11} />
+              <span>Export All</span>
+            </button>
+            <button
+              onClick={() => {
+                triggerHaptic('light');
+                setIsGuideOpen(true);
+              }}
+              className="neu-button px-2.5 py-1 rounded-full text-[8.5px] sm:text-[9px] font-bold uppercase tracking-wider text-[var(--color-neu-text-light)] flex items-center gap-1 cursor-pointer hover:text-[var(--color-neu-text)]"
+              title="Step-by-Step Feature Guide"
+            >
+              <BookOpen size={11} />
+              <span>Guide</span>
+            </button>
+          </div>
         </div>
         <div className="neu-pressed rounded-full p-1.5 flex items-center mb-3">
           <Search className="ml-3 text-[var(--color-neu-text-light)] shrink-0" size={18} />
@@ -267,6 +282,13 @@ export const VaultScreen: React.FC = () => {
       <FeatureGuideModal
         isOpen={isGuideOpen}
         onClose={() => setIsGuideOpen(false)}
+      />
+
+      <ExportVaultModal
+        isOpen={isExportOpen}
+        onClose={() => setIsExportOpen(false)}
+        prompts={prompts}
+        initialCategory={selectedCategory}
       />
     </div>
   );

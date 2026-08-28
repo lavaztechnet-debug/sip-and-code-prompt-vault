@@ -1,5 +1,5 @@
 import React, { createContext, useContext, useState, useEffect, ReactNode } from 'react';
-import { Prompt, ScreenName, VariableProfile, TermuxBridgeConfig, ThemeStyle, ThemeColors } from '../types';
+import { Prompt, ScreenName, NavigationMode, VariableProfile, TermuxBridgeConfig, ThemeStyle, ThemeColors } from '../types';
 import { initialPrompts } from '../data/initialPrompts';
 import { getCurrentUser } from '../services/googleAuth';
 import { 
@@ -63,6 +63,10 @@ interface VaultContextType {
   lastSyncTime?: Date;
   triggerManualCloudSync: () => Promise<void>;
 
+  // Navigation Style
+  navigationMode: NavigationMode;
+  setNavigationMode: (mode: NavigationMode) => void;
+
   // Theme Management
   allThemes: ThemeStyle[];
   activeTheme: ThemeStyle;
@@ -92,6 +96,17 @@ export const VaultProvider: React.FC<{ children: ReactNode }> = ({ children }) =
   // Theme State
   const [activeThemeId, setActiveThemeIdState] = useState<string>(getStoredThemeId());
   const [customThemeColors, setCustomThemeColors] = useState<Partial<ThemeColors> | undefined>(undefined);
+
+  // Navigation Mode (default to modern tactile drawer)
+  const [navigationMode, setNavigationModeState] = useState<NavigationMode>(() => {
+    const saved = localStorage.getItem('prompt_vault_nav_mode');
+    return (saved === 'dock' || saved === 'drawer') ? (saved as NavigationMode) : 'drawer';
+  });
+
+  const setNavigationMode = (mode: NavigationMode) => {
+    setNavigationModeState(mode);
+    localStorage.setItem('prompt_vault_nav_mode', mode);
+  };
 
   const activeTheme = getThemeById(activeThemeId);
 
@@ -264,6 +279,7 @@ export const VaultProvider: React.FC<{ children: ReactNode }> = ({ children }) =
       profiles, activeProfile, setActiveProfile, addProfile, updateProfile, deleteProfile,
       termuxConfig, updateTermuxConfig, openRouterKey, setOpenRouterKey,
       syncState, lastSyncTime, triggerManualCloudSync,
+      navigationMode, setNavigationMode,
       allThemes: AVAILABLE_THEMES, activeTheme, activeThemeId, setTheme,
       customThemeColors, updateCustomThemeColors, resetCustomThemeColors
     }}>

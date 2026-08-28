@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { VaultProvider, useVault } from './context/VaultContext';
 import { Navigation } from './components/Navigation';
+import { FloatingNavCapsule } from './components/FloatingNavCapsule';
 import { ThemeSelectorModal } from './components/ThemeSelectorModal';
 import { Palette } from 'lucide-react';
 import { triggerHaptic } from './utils/haptics';
@@ -8,6 +9,7 @@ import { triggerHaptic } from './utils/haptics';
 // Screens
 import { CommandCenterScreen } from './screens/CommandCenterScreen';
 import { VaultScreen } from './screens/VaultScreen';
+import { StyleExtractorScreen } from './screens/StyleExtractorScreen';
 import { CreatorScreen } from './screens/CreatorScreen';
 import { OptimizerScreen } from './screens/OptimizerScreen';
 import { LabScreen } from './screens/LabScreen';
@@ -17,13 +19,14 @@ import { DeploymentScreen } from './screens/DeploymentScreen';
 import { DynamicBackground } from './components/DynamicBackground';
 
 const MainLayout: React.FC = () => {
-  const { currentScreen, activeTheme } = useVault();
+  const { currentScreen, activeTheme, navigationMode } = useVault();
   const [isThemeModalOpen, setIsThemeModalOpen] = useState(false);
 
   const renderScreen = () => {
     switch (currentScreen) {
       case 'command_center': return <CommandCenterScreen />;
       case 'vault': return <VaultScreen />;
+      case 'style_dna': return <StyleExtractorScreen />;
       case 'creator': return <CreatorScreen />;
       case 'optimizer': return <OptimizerScreen />;
       case 'lab': return <LabScreen />;
@@ -37,7 +40,11 @@ const MainLayout: React.FC = () => {
   return (
     <div className="h-[100dvh] w-full bg-[var(--color-neu-bg)] text-[var(--color-neu-text)] relative overflow-hidden flex flex-col select-none">
       <DynamicBackground />
-      {/* Floating Global Theme Quick-Switcher respecting Top Safe Area (Cutout aware) */}
+
+      {/* Floating Tactile Top Navigation Capsule (Drawer Trigger) */}
+      <FloatingNavCapsule onOpenThemeModal={() => setIsThemeModalOpen(true)} />
+
+      {/* Floating Global Theme Quick-Switcher respecting Top Safe Area */}
       <div className="fixed top-[max(12px,calc(env(safe-area-inset-top,0px)+10px))] right-4 z-40">
         <button
           onClick={() => {
@@ -58,11 +65,13 @@ const MainLayout: React.FC = () => {
         </button>
       </div>
 
-      <div className="flex-1 overflow-y-auto no-scrollbar w-full max-w-2xl mx-auto flex flex-col">
+      {/* Main Screen Canvas with dynamic bottom padding */}
+      <div className={`flex-1 overflow-y-auto no-scrollbar w-full max-w-2xl mx-auto flex flex-col ${navigationMode === 'dock' ? 'pb-24' : 'pb-8'}`}>
         {renderScreen()}
       </div>
 
-      <Navigation />
+      {/* Optional classic bottom dock if user toggles to 'dock' mode */}
+      {navigationMode === 'dock' && <Navigation />}
 
       <ThemeSelectorModal 
         isOpen={isThemeModalOpen}
