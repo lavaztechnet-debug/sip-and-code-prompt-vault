@@ -34,7 +34,7 @@ export const CommandCenterScreen: React.FC = () => {
   };
 
   return (
-    <div className="px-4 sm:px-6 pt-[max(14px,calc(env(safe-area-inset-top,0px)+14px))] pb-[max(86px,calc(env(safe-area-inset-bottom,0px)+86px))] animate-fade-in flex flex-col gap-4 sm:gap-6 min-h-full">
+    <div className="px-4 sm:px-6 pt-[max(14px,calc(env(safe-area-inset-top,0px)+14px))] pb-4 sm:pb-6 animate-fade-in flex flex-col gap-4 sm:gap-6 w-full">
       {/* Executive Hero */}
       <header className="neu-flat rounded-[24px] sm:rounded-[28px] p-5 sm:p-7 flex flex-col justify-center relative border border-[var(--color-neu-shadow-light)]/40">
         <div className="flex justify-between items-start gap-3">

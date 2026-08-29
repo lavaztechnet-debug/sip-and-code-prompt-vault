@@ -145,7 +145,7 @@ echo "🎉 Standalone APK built: $BUILD_DIR/app-aligned.apk"
   };
 
   return (
-    <div className="px-4 sm:px-6 pt-[max(14px,calc(env(safe-area-inset-top,0px)+14px))] pb-[max(86px,calc(env(safe-area-inset-bottom,0px)+86px))] animate-fade-in min-h-full flex flex-col gap-4 sm:gap-6 overflow-y-auto no-scrollbar">
+    <div className="px-4 sm:px-6 pt-[max(14px,calc(env(safe-area-inset-top,0px)+14px))] pb-4 sm:pb-6 animate-fade-in flex flex-col gap-4 sm:gap-6 w-full">
       {/* Header */}
       <header className="neu-flat rounded-[24px] sm:rounded-[28px] p-5 sm:p-6 flex items-center justify-between border border-[var(--color-neu-shadow-light)]/40">
         <div className="flex items-center gap-3">

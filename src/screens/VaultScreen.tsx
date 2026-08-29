@@ -12,16 +12,27 @@ import { Search, Copy, Star, Play, StickyNote, Sparkles, Check, Eye, BookOpen, D
 const CATEGORIES: Category[] = [
   'All',
   'Meta Prompts',
-  'Termux CLI',
   'Prompt Engineering',
+  'Code & Architecture',
+  'Research & Synthesis',
+  'Writing & Content',
+  'Business & Strategy',
+  'Monetization & Sales',
+  'Productivity & Systems',
+  'Career & Leadership',
+  'Data & Analytics',
+  'UI/UX & Design',
+  'Learning & Mastery',
+  'Life & Strategy',
+  'Termux CLI',
   'Android System',
-  'Documents',
-  'Tools',
   'Creative',
   'General Apps',
   'Image & Gallery',
   'Horror',
   'Music',
+  'Documents',
+  'Tools',
   'Utility'
 ];
 
@@ -95,8 +106,8 @@ export const VaultScreen: React.FC = () => {
   };
 
   return (
-    <div className="px-4 sm:px-6 pt-[max(14px,calc(env(safe-area-inset-top,0px)+14px))] pb-[max(86px,calc(env(safe-area-inset-bottom,0px)+86px))] animate-fade-in min-h-full flex flex-col gap-4 sm:gap-6">
-      <header className="neu-flat rounded-[24px] sm:rounded-[28px] p-5 sm:p-6 flex flex-col justify-center border border-[var(--color-neu-shadow-light)]/40">
+    <div className="px-4 sm:px-6 pt-[max(14px,calc(env(safe-area-inset-top,0px)+14px))] pb-4 sm:pb-6 animate-fade-in flex flex-col gap-4 sm:gap-6 w-full">
+      <header className="neu-flat rounded-[24px] sm:rounded-[28px] p-5 sm:p-6 flex flex-col justify-center border border-[var(--color-neu-shadow-light)]/40 shrink-0">
         <div className="flex justify-between items-center mb-3">
           <h1 className="text-[9.5px] sm:text-[10px] uppercase tracking-widest font-bold opacity-60">Master Vault • {prompts.length} Prompts</h1>
           <div className="flex items-center gap-1.5">
@@ -152,7 +163,7 @@ export const VaultScreen: React.FC = () => {
         </div>
       </header>
       
-      <div className="flex-1 overflow-y-auto space-y-3.5 no-scrollbar">
+      <div className="space-y-3.5 w-full pb-4">
         {filteredPrompts.map(prompt => (
           <div key={prompt.id} className="neu-flat rounded-[22px] sm:rounded-[24px] p-4 sm:p-5 flex flex-col gap-3">
             <div className="flex justify-between items-start gap-2">

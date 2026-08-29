@@ -2,6 +2,13 @@ import { Prompt } from '../types';
 import { additional50MetaPrompts } from './metaPrompts50';
 import { generalAppsPrompts } from './generalAppsPrompts';
 import { categoryPrompts } from './categoryPrompts';
+import { universalPrompts1 } from './universalPrompts1';
+import { universalPrompts2 } from './universalPrompts2';
+import { universalPrompts3 } from './universalPrompts3';
+import { universalPrompts4 } from './universalPrompts4';
+import { universalPrompts5 } from './universalPrompts5';
+import { universalLibrary60 } from './universalLibrary60';
+import { universalLibraryMore } from './universalLibraryMore';
 
 export const initialPrompts: Prompt[] = [
   // --- ADDITIONAL 50 HIGH-VALUE META PROMPTS ---
@@ -12,6 +19,15 @@ export const initialPrompts: Prompt[] = [
 
   // --- 40 HIGH-VALUE PROMPTS (IMAGE & GALLERY, HORROR, MUSIC, UTILITY) ---
   ...categoryPrompts,
+
+  // --- UNIVERSAL PROMPT LIBRARY MODULES (16 CORE CATEGORIES) ---
+  ...universalPrompts1,
+  ...universalPrompts2,
+  ...universalPrompts3,
+  ...universalPrompts4,
+  ...universalPrompts5,
+  ...universalLibrary60,
+  ...universalLibraryMore,
 
   // --- META PROMPTS ---
   {

@@ -66,7 +66,7 @@ const MainLayout: React.FC = () => {
       </div>
 
       {/* Main Screen Canvas with dynamic bottom padding */}
-      <div className={`flex-1 overflow-y-auto no-scrollbar w-full max-w-2xl mx-auto flex flex-col ${navigationMode === 'dock' ? 'pb-24' : 'pb-8'}`}>
+      <div className={`flex-1 overflow-y-auto no-scrollbar w-full max-w-2xl mx-auto flex flex-col ${navigationMode === 'dock' ? 'pb-24' : 'pb-4 sm:pb-6'}`}>
         {renderScreen()}
       </div>
 
